@@ -16,7 +16,7 @@ export default function HomePage() {
 
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-purple-50 to-white">
+        <section className="relative overflow-hidden bg-white">
           <div className="max-w-[1240px] mx-auto section-padding py-24 sm:py-32">
             <div className="text-left">
               {/* Announcement Badge */}
