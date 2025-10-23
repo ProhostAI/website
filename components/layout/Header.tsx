@@ -296,9 +296,11 @@ export default function Header() {
           featuresOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
         }`}>
           <div className="bg-white border-t border-gray-100 shadow-lg">
-            <div className="px-4 sm:px-8 lg:px-[30px] py-8">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Features</h3>
-              <div className="grid grid-cols-2 gap-8 max-w-2xl">
+            <div className="py-8">
+              <div className="px-4 sm:px-8 lg:px-[30px]">
+                <div className="lg:ml-[calc(32px+40px)]">
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Features</h3>
+                  <div className="grid grid-cols-2 gap-8 max-w-2xl">
                 {/* Column 1 */}
                 <div className="space-y-4">
                   {featuresMenu.slice(0, 3).map((item) => (
@@ -335,6 +337,8 @@ export default function Header() {
                     </Link>
                   ))}
                 </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -347,9 +351,11 @@ export default function Header() {
           resourcesOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
         }`}>
           <div className="bg-white border-t border-gray-100 shadow-lg">
-            <div className="px-4 sm:px-8 lg:px-[30px] py-8">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Resources</h3>
-              <div className="grid grid-cols-2 gap-8 max-w-2xl">
+            <div className="py-8">
+              <div className="px-4 sm:px-8 lg:px-[30px]">
+                <div className="lg:ml-[calc(32px+40px)]">
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Resources</h3>
+                  <div className="grid grid-cols-2 gap-8 max-w-2xl">
                 {/* Column 1 */}
                 <div className="space-y-4">
                   {resourcesMenu.slice(0, 3).map((item) => (
@@ -389,6 +395,8 @@ export default function Header() {
                       </p>
                     </Link>
                   ))}
+                </div>
+                  </div>
                 </div>
               </div>
             </div>
