@@ -106,7 +106,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md">
+    <header className="fixed top-0 z-[100] w-full bg-white/80 backdrop-blur-md">
       <nav className="px-4 sm:px-8 lg:px-[30px]" aria-label="Global">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Desktop Navigation - Left Side */}
@@ -306,18 +306,6 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Overlay - Covers page below navigation */}
-      {(featuresOpen || resourcesOpen) && (
-        <div
-          className="fixed inset-0 top-20 bg-black/10 z-30"
-          onClick={() => {
-            setFeaturesOpen(false);
-            setResourcesOpen(false);
-            setIsAnimating(false);
-          }}
-        />
-      )}
-
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
         <div className={`fixed left-0 right-0 top-20 z-40 ${
@@ -430,6 +418,18 @@ export default function Header() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Overlay - Covers page below navigation and behind dropdown */}
+      {(featuresOpen || resourcesOpen) && (
+        <div
+          className="fixed inset-0 top-20 bg-black/10 z-30"
+          onClick={() => {
+            setFeaturesOpen(false);
+            setResourcesOpen(false);
+            setIsAnimating(false);
+          }}
+        />
       )}
     </header>
   );
