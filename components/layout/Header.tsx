@@ -127,8 +127,9 @@ export default function Header() {
   }, [featuresOpen, resourcesOpen]);
 
   return (
+    <>
     <header className="fixed top-0 z-50 w-full bg-white">
-      <nav className="px-4 sm:px-8 lg:px-[30px] relative z-20" aria-label="Global">
+      <nav className="px-4 sm:px-8 lg:px-[30px]" aria-label="Global">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Desktop Navigation - Left Side */}
           <div className="flex items-center gap-10">
@@ -326,6 +327,7 @@ export default function Header() {
           </div>
         )}
       </nav>
+    </header>
 
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
@@ -444,6 +446,6 @@ export default function Header() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
