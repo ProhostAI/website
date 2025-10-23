@@ -206,8 +206,8 @@ export default function VendorDirectoryPage() {
       <main className="pt-16 min-h-screen bg-gray-50">
         <div className="py-12 bg-white border-b">
           <div className="max-width-container section-padding">
-            <h1 className="text-4xl font-bold text-gray-900">Vendor Directory</h1>
-            <p className="mt-4 text-lg text-gray-600">
+            <h1 className="text-4xl font-bold text-gray-900 text-center">Vendor Marketplace</h1>
+            <p className="mt-4 text-lg text-gray-600 text-center">
               Find trusted vendors and service providers for your rental properties
             </p>
 
