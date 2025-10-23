@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const navigation = [
@@ -76,41 +76,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
-  const [shouldTransition, setShouldTransition] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-
-  const updateIndicator = (element: HTMLElement | null) => {
-    if (!element || !navRef.current) {
-      // Fade out at current position
-      setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
-      setTimeout(() => setShouldTransition(false), 300);
-      return;
-    }
-
-    const navRect = navRef.current.getBoundingClientRect();
-    const itemRect = element.getBoundingClientRect();
-
-    const newStyle = {
-      left: itemRect.left - navRect.left,
-      width: itemRect.width,
-      opacity: 1,
-    };
-
-    // If currently invisible, appear instantly at new position
-    if (indicatorStyle.opacity === 0) {
-      setShouldTransition(false);
-      setIndicatorStyle(newStyle);
-      // Enable transition for next move
-      setTimeout(() => setShouldTransition(true), 50);
-    } else {
-      // Already visible, slide to new position
-      setShouldTransition(true);
-      setIndicatorStyle(newStyle);
-    }
-  };
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md">
@@ -128,35 +94,15 @@ export default function Header() {
             </Link>
 
             {/* Desktop navigation */}
-            <div ref={navRef} className="hidden lg:flex lg:gap-x-4 lg:items-center relative">
-              {/* Sliding hover indicator */}
-              <div
-                className={`absolute bg-gray-100 rounded-full h-[33px] pointer-events-none ${
-                  shouldTransition ? 'transition-all duration-300 ease-out' : 'transition-opacity duration-200'
-                }`}
-                style={{
-                  left: `${indicatorStyle.left}px`,
-                  width: `${indicatorStyle.width}px`,
-                  opacity: indicatorStyle.opacity,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                }}
-              />
-
+            <div className="hidden lg:flex lg:gap-x-4 lg:items-center">
               {/* Features Dropdown */}
               <div
-                className="relative z-10"
-                onMouseEnter={(e) => {
-                  setFeaturesOpen(true);
-                  updateIndicator(e.currentTarget.querySelector('button'));
-                }}
-                onMouseLeave={() => {
-                  setFeaturesOpen(false);
-                  updateIndicator(null);
-                }}
+                className="relative"
+                onMouseEnter={() => setFeaturesOpen(true)}
+                onMouseLeave={() => setFeaturesOpen(false)}
               >
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-colors rounded-full px-3 py-1.5"
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-full px-3 py-1.5 hover:bg-gray-100"
                   style={{ lineHeight: '21px' }}
                 >
                   Features
@@ -170,41 +116,16 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </button>
-
-                {featuresOpen && (
-                  <div className="absolute left-0 z-10 pt-3 w-64">
-                    <div className="rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                      <div className="py-1">
-                        {featuresMenu.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className="group block px-4 py-3 hover:bg-gray-50 transition-colors"
-                          >
-                            <p className="text-sm font-medium text-gray-900 group-hover:text-primary-600">
-                              {item.name}
-                            </p>
-                            <p className="text-xs text-gray-500 mt-1">
-                              {item.description}
-                            </p>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-medium transition-colors rounded-full px-3 py-1.5 relative z-10 ${
+                  className={`text-sm font-medium transition-all rounded-full px-3 py-1.5 hover:bg-gray-100 ${
                     pathname === item.href ? 'text-primary-600' : 'text-black'
                   }`}
                   style={{ lineHeight: '21px' }}
-                  onMouseEnter={(e) => updateIndicator(e.currentTarget)}
-                  onMouseLeave={() => updateIndicator(null)}
                 >
                   {item.name}
                 </Link>
@@ -212,18 +133,12 @@ export default function Header() {
 
               {/* Resources Dropdown */}
               <div
-                className="relative z-10"
-                onMouseEnter={(e) => {
-                  setResourcesOpen(true);
-                  updateIndicator(e.currentTarget.querySelector('button'));
-                }}
-                onMouseLeave={() => {
-                  setResourcesOpen(false);
-                  updateIndicator(null);
-                }}
+                className="relative"
+                onMouseEnter={() => setResourcesOpen(true)}
+                onMouseLeave={() => setResourcesOpen(false)}
               >
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-colors rounded-full px-3 py-1.5"
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-full px-3 py-1.5 hover:bg-gray-100"
                   style={{ lineHeight: '21px' }}
                 >
                   Resources
@@ -237,31 +152,6 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </button>
-
-                {resourcesOpen && (
-                  <div className="absolute right-0 z-10 pt-3 w-64">
-                    <div className="rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                      <div className="py-1">
-                        {resourcesMenu.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            target={item.external ? "_blank" : undefined}
-                            rel={item.external ? "noopener noreferrer" : undefined}
-                            className="group block px-4 py-3 hover:bg-gray-50 transition-colors"
-                          >
-                            <p className="text-sm font-medium text-gray-900 group-hover:text-primary-600">
-                              {item.name}
-                            </p>
-                            <p className="text-xs text-gray-500 mt-1">
-                              {item.description}
-                            </p>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -394,6 +284,64 @@ export default function Header() {
           </div>
         )}
       </nav>
+
+      {/* Full-screen Features Dropdown */}
+      {featuresOpen && (
+        <div
+          className="fixed left-0 right-0 top-[65px] bg-white border-t border-gray-100 shadow-lg"
+          onMouseEnter={() => setFeaturesOpen(true)}
+          onMouseLeave={() => setFeaturesOpen(false)}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-[30px] py-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {featuresMenu.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="group block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 mb-1">
+                    {item.name}
+                  </h3>
+                  <p className="text-xs text-gray-500">
+                    {item.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Full-screen Resources Dropdown */}
+      {resourcesOpen && (
+        <div
+          className="fixed left-0 right-0 top-[65px] bg-white border-t border-gray-100 shadow-lg"
+          onMouseEnter={() => setResourcesOpen(true)}
+          onMouseLeave={() => setResourcesOpen(false)}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-[30px] py-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {resourcesMenu.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
+                  className="group block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 mb-1">
+                    {item.name}
+                  </h3>
+                  <p className="text-xs text-gray-500">
+                    {item.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
