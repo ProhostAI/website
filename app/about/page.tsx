@@ -125,7 +125,7 @@ export default function AboutPage() {
                   Harvard University graduate in Economics & Neuroscience.
                 </p>
                 <Link
-                  href="https://www.linkedin.com/in/bilguunulammandakh/"
+                  href="https://www.linkedin.com/in/bulam/"
                   target="_blank"
                   className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
                 >
@@ -149,7 +149,7 @@ export default function AboutPage() {
                   Building scalable systems and infrastructure for millions of users.
                 </p>
                 <Link
-                  href="https://www.linkedin.com/in/andrew-lawson/"
+                  href="https://www.linkedin.com/in/aeriklawson/"
                   target="_blank"
                   className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
                 >

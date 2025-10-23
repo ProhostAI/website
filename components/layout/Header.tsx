@@ -149,18 +149,25 @@ export default function Header() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-3">
             <Link
-              href="https://app.prohostai.com/signin"
-              className="text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
+              href="https://app.prohost.ai/signin"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors whitespace-nowrap"
             >
-              Sign in
+              Log In
             </Link>
             <Link
-              href="https://app.prohostai.com/signup"
-              className="rounded-lg bg-primary-600 px-4 py-2 text-sm font-medium text-white hover:bg-primary-700 transition-colors"
+              href="https://cal.com/billu/prohostdemo"
+              target="_blank"
+              className="rounded-full border border-gray-300 px-5 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors whitespace-nowrap"
             >
-              Get Started
+              Book a demo
+            </Link>
+            <Link
+              href="https://app.prohost.ai/signup"
+              className="rounded-full bg-gray-900 px-5 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors whitespace-nowrap"
+            >
+              Sign up now
             </Link>
           </div>
         </div>
@@ -203,18 +210,26 @@ export default function Header() {
 
               <div className="border-t border-gray-200 pt-4 space-y-2">
                 <Link
-                  href="https://app.prohostai.com/signin"
+                  href="https://app.prohost.ai/signin"
                   className="block rounded-lg px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Sign in
+                  Log In
                 </Link>
                 <Link
-                  href="https://app.prohostai.com/signup"
-                  className="block rounded-lg bg-primary-600 px-3 py-2 text-base font-medium text-white hover:bg-primary-700"
+                  href="https://cal.com/billu/prohostdemo"
+                  target="_blank"
+                  className="block rounded-lg border border-gray-300 px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Get Started
+                  Book a demo
+                </Link>
+                <Link
+                  href="https://app.prohost.ai/signup"
+                  className="block rounded-lg bg-gray-900 px-3 py-2 text-base font-medium text-white hover:bg-gray-800"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sign up now
                 </Link>
               </div>
             </div>

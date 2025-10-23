@@ -30,7 +30,7 @@ const plans = [
       'Unlimited team members',
     ],
     cta: 'Start 14-Day Free Trial',
-    ctaLink: 'https://app.prohostai.com/signup',
+    ctaLink: 'https://app.prohost.ai/signup',
   },
   {
     name: 'Enterprise',
@@ -305,7 +305,7 @@ export default function PricingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="https://app.prohostai.com/signup"
+                href="https://app.prohost.ai/signup"
                 target="_blank"
                 className="px-8 py-4 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:-translate-y-0.5 hover:shadow-lg"
               >

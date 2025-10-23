@@ -38,7 +38,7 @@ export default function HomePage() {
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Link
-                  href="https://app.prohostai.com/signup"
+                  href="https://app.prohost.ai/signup"
                   target="_blank"
                   className="rounded-lg bg-primary-600 px-8 py-4 text-base font-semibold text-white shadow-lg hover:bg-primary-700 transition-all hover:shadow-xl transform hover:-translate-y-0.5"
                 >
