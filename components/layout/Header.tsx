@@ -52,7 +52,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <nav className="px-4 sm:px-8 lg:px-[60px]" aria-label="Global">
+      <nav className="px-4 sm:px-8 lg:px-[30px]" aria-label="Global">
         <div className="flex items-center justify-between py-4">
           {/* Logo and Desktop Navigation - Left Side */}
           <div className="flex items-center gap-10">
