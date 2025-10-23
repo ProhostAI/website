@@ -139,8 +139,8 @@ export default function VendorProfilePage() {
           <div className="max-width-container section-padding py-24 text-center">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Vendor Not Found</h1>
             <p className="text-gray-600 mb-8">The vendor you're looking for doesn't exist.</p>
-            <Link href="/directory" className="text-primary-600 hover:text-primary-700 font-medium">
-              ← Back to Directory
+            <Link href="/vendors" className="text-primary-600 hover:text-primary-700 font-medium">
+              ← Back to Vendors
             </Link>
           </div>
         </main>
@@ -355,7 +355,7 @@ export default function VendorProfilePage() {
           {/* Back to Directory */}
           <div className="mt-12 text-center">
             <Link
-              href="/directory"
+              href="/vendors"
               className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

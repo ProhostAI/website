@@ -30,7 +30,7 @@ export default function DownloadsPage() {
             {/* App Download Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
-                href="https://apps.apple.com/app/prohostai"
+                href="https://apps.apple.com/us/app/prohostai/id6503224326"
                 target="_blank"
                 className="inline-flex items-center justify-center px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
               >
@@ -44,7 +44,7 @@ export default function DownloadsPage() {
               </Link>
 
               <Link
-                href="https://play.google.com/store/apps/details?id=com.prohostai"
+                href="https://play.google.com/store/apps/details?id=ai.prohost.android&hl=en&pli=1"
                 target="_blank"
                 className="inline-flex items-center justify-center px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
               >
@@ -237,7 +237,7 @@ export default function DownloadsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="https://apps.apple.com/app/prohostai"
+                href="https://apps.apple.com/us/app/prohostai/id6503224326"
                 target="_blank"
                 className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
               >
@@ -248,7 +248,7 @@ export default function DownloadsPage() {
               </Link>
 
               <Link
-                href="https://play.google.com/store/apps/details?id=com.prohostai"
+                href="https://play.google.com/store/apps/details?id=ai.prohost.android&hl=en&pli=1"
                 target="_blank"
                 className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
               >

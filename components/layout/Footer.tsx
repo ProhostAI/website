@@ -15,7 +15,7 @@ const footerLinks = {
     links: [
       { name: 'Blog', href: '/blog' },
       { name: 'Help Center', href: '/help' },
-      { name: 'Vendor Directory', href: '/directory' },
+      { name: 'Vendor Directory', href: '/vendors' },
       { name: 'Case Studies', href: '/case-studies' },
     ],
   },
@@ -49,15 +49,12 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
             {/* Brand Column */}
             <div className="col-span-2 md:col-span-4 lg:col-span-1">
-              <Link href="/" className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center">
                 <img
                   className="h-8 w-auto"
-                  src="/logo-white.svg"
+                  src="/images/prohost-logo-footer.svg"
                   alt="ProhostAI"
                 />
-                <span className="text-xl font-semibold text-white">
-                  ProhostAI
-                </span>
               </Link>
               <p className="mt-4 text-sm">
                 AI-powered property management for short-term rentals. Automate guest communications and maximize your revenue.

@@ -5,10 +5,9 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const navigation = [
-  { name: 'Home', href: '/' },
   { name: 'Features', href: '/#features' },
   { name: 'Pricing', href: '/pricing' },
-  { name: 'Vendors', href: '/directory' },
+  { name: 'Vendors', href: '/vendors' },
   { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ];
@@ -57,15 +56,12 @@ export default function Header() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex lg:flex-1">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center">
               <img
                 className="h-8 w-auto"
-                src="/logo-black.svg"
+                src="/prohostai-logo.svg"
                 alt="ProhostAI"
               />
-              <span className="text-xl font-semibold text-gray-900">
-                ProhostAI
-              </span>
             </Link>
           </div>
 

@@ -333,7 +333,7 @@ export default function VendorDirectoryPage() {
                   {vendors.map((vendor) => (
                     <Link
                       key={vendor.id}
-                      href={`/directory/${vendor.slug}`}
+                      href={`/vendors/${vendor.slug}`}
                       className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden"
                     >
                       <div className="aspect-video bg-gray-100 relative">

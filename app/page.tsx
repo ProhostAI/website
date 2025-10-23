@@ -80,7 +80,7 @@ export default function HomePage() {
                 <span className="text-xl font-semibold text-gray-400">Pioneer</span>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-gray-200">
+              <div className="mt-8">
                 <p className="text-sm text-gray-500 mb-6">Founded by team from</p>
                 <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
                   <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 hover:opacity-100 transition-opacity" />
@@ -341,10 +341,10 @@ export default function HomePage() {
                   respond to guests, and track everything from your phone.
                 </p>
                 <div className="mt-8 flex gap-4">
-                  <a href="https://apps.apple.com/app/prohostai" target="_blank" rel="noopener noreferrer">
+                  <a href="https://apps.apple.com/us/app/prohostai/id6503224326" target="_blank" rel="noopener noreferrer">
                     <img src="/images/appstore.svg" alt="Download on App Store" className="h-12" />
                   </a>
-                  <a href="https://play.google.com/store/apps/details?id=com.prohostai" target="_blank" rel="noopener noreferrer">
+                  <a href="https://play.google.com/store/apps/details?id=ai.prohost.android&hl=en&pli=1" target="_blank" rel="noopener noreferrer">
                     <img src="/images/googleplay.svg" alt="Get it on Google Play" className="h-12" />
                   </a>
                 </div>
@@ -390,7 +390,7 @@ export default function HomePage() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
-                href="https://app.prohostai.com/signup"
+                href="https://app.prohost.ai/signup"
                 target="_blank"
                 className="rounded-lg bg-white px-8 py-4 text-base font-semibold text-primary-600 shadow-lg hover:bg-gray-50 transition-all hover:shadow-xl transform hover:-translate-y-0.5"
               >
