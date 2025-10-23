@@ -109,7 +109,8 @@ export default function Header() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      if (!target.closest('header')) {
+      // Check if click is outside navigation and dropdown areas
+      if (!target.closest('nav') && !target.closest('[data-dropdown]')) {
         setFeaturesOpen(false);
         setResourcesOpen(false);
         setIsAnimating(false);
@@ -117,16 +118,16 @@ export default function Header() {
     };
 
     if (featuresOpen || resourcesOpen) {
-      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [featuresOpen, resourcesOpen]);
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md">
+    <header className="fixed top-0 z-50 w-full bg-white">
       <nav className="px-4 sm:px-8 lg:px-[30px] relative z-20" aria-label="Global">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Desktop Navigation - Left Side */}
@@ -328,9 +329,11 @@ export default function Header() {
 
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
-        <div className={`fixed left-0 right-0 top-20 z-10 ${
-          isAnimating ? 'animate-slide-down' : ''
-        }`}>
+        <div
+          data-dropdown
+          className={`fixed left-0 right-0 top-20 z-10 ${
+            isAnimating ? 'animate-slide-down' : ''
+          }`}>
           <div className="bg-white border-t border-gray-100">
             <div className="py-8">
               <div className="px-4 sm:px-8 lg:px-[30px]">
@@ -383,9 +386,11 @@ export default function Header() {
 
       {/* Full-screen Resources Dropdown */}
       {resourcesOpen && (
-        <div className={`fixed left-0 right-0 top-20 z-10 ${
-          isAnimating ? 'animate-slide-down' : ''
-        }`}>
+        <div
+          data-dropdown
+          className={`fixed left-0 right-0 top-20 z-10 ${
+            isAnimating ? 'animate-slide-down' : ''
+          }`}>
           <div className="bg-white border-t border-gray-100">
             <div className="py-8">
               <div className="px-4 sm:px-8 lg:px-[30px]">
