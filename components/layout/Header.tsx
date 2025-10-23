@@ -1,15 +1,42 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 const navigation = [
-  { name: 'Features', href: '/#features' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Vendors', href: '/vendors' },
   { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
+];
+
+const featuresMenu = [
+  {
+    name: 'AI Messaging',
+    href: '/#features',
+    description: 'AI-powered guest communications',
+  },
+  {
+    name: 'AI Tasks',
+    href: '/#features',
+    description: 'Automated maintenance management',
+  },
+  {
+    name: 'Cleanings',
+    href: '/#features',
+    description: 'Smart cleaning coordination',
+  },
+  {
+    name: 'Calendar',
+    href: '/#features',
+    description: 'Multi-property calendar view',
+  },
+  {
+    name: 'Upsells',
+    href: '/#features',
+    description: 'Maximize booking revenue',
+  },
 ];
 
 const resourcesMenu = [
@@ -47,15 +74,66 @@ const resourcesMenu = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [featuresOpen, setFeaturesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const pathname = usePathname();
 
+  const handleDropdownToggle = (dropdown: 'features' | 'resources') => {
+    if (dropdown === 'features') {
+      if (resourcesOpen) {
+        // Switching from Resources to Features - no animation
+        setResourcesOpen(false);
+        setFeaturesOpen(true);
+        setIsAnimating(false);
+      } else {
+        // Opening Features fresh - animate
+        setFeaturesOpen(!featuresOpen);
+        setIsAnimating(!featuresOpen);
+      }
+    } else {
+      if (featuresOpen) {
+        // Switching from Features to Resources - no animation
+        setFeaturesOpen(false);
+        setResourcesOpen(true);
+        setIsAnimating(false);
+      } else {
+        // Opening Resources fresh - animate
+        setResourcesOpen(!resourcesOpen);
+        setIsAnimating(!resourcesOpen);
+      }
+    }
+  };
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      // Check if click is outside navigation and dropdown areas
+      if (!target.closest('nav') && !target.closest('[data-dropdown]')) {
+        setFeaturesOpen(false);
+        setResourcesOpen(false);
+        setIsAnimating(false);
+      }
+    };
+
+    if (featuresOpen || resourcesOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [featuresOpen, resourcesOpen]);
+
   return (
-    <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <nav className="max-width-container section-padding" aria-label="Global">
-        <div className="flex items-center justify-between py-4">
-          {/* Logo */}
-          <div className="flex lg:flex-1">
+    <>
+    <header className="fixed top-0 z-50 w-full bg-white">
+      <nav className="px-4 sm:px-8 lg:px-[30px]" aria-label="Global">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo and Desktop Navigation - Left Side */}
+          <div className="flex items-center gap-10">
+            {/* Logo */}
             <Link href="/" className="flex items-center">
               <img
                 className="h-8 w-auto"
@@ -63,6 +141,62 @@ export default function Header() {
                 alt="ProhostAI"
               />
             </Link>
+
+            {/* Desktop navigation */}
+            <div className="hidden lg:flex lg:gap-x-2 lg:items-center">
+              {/* Features Dropdown */}
+              <div className="relative">
+                <button
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
+                  style={{ lineHeight: '21px' }}
+                  onClick={() => handleDropdownToggle('features')}
+                >
+                  Features
+                  <svg
+                    className={`ml-1 h-4 w-4 transition-transform ${featuresOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+              </div>
+
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`text-sm font-medium transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100 ${
+                    pathname === item.href ? 'text-primary-600' : 'text-black'
+                  }`}
+                  style={{ lineHeight: '21px' }}
+                >
+                  {item.name}
+                </Link>
+              ))}
+
+              {/* Resources Dropdown */}
+              <div className="relative">
+                <button
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
+                  style={{ lineHeight: '21px' }}
+                  onClick={() => handleDropdownToggle('resources')}
+                >
+                  Resources
+                  <svg
+                    className={`ml-1 h-4 w-4 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -85,86 +219,32 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Desktop navigation */}
-          <div className="hidden lg:flex lg:gap-x-8 lg:items-center">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary-600 ${
-                  pathname === item.href ? 'text-primary-600' : 'text-gray-700'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-
-            {/* Resources Dropdown */}
-            <div className="relative">
-              <button
-                className="flex items-center text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
-                onClick={() => setResourcesOpen(!resourcesOpen)}
-                onBlur={() => setTimeout(() => setResourcesOpen(false), 200)}
-              >
-                Resources
-                <svg
-                  className={`ml-1 h-4 w-4 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                </svg>
-              </button>
-
-              {resourcesOpen && (
-                <div className="absolute right-0 z-10 mt-3 w-64 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                  <div className="py-1">
-                    {resourcesMenu.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noopener noreferrer" : undefined}
-                        className="group block px-4 py-3 hover:bg-gray-50 transition-colors"
-                        onClick={() => setResourcesOpen(false)}
-                      >
-                        <p className="text-sm font-medium text-gray-900 group-hover:text-primary-600">
-                          {item.name}
-                        </p>
-                        <p className="text-xs text-gray-500 mt-1">
-                          {item.description}
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-3">
+          {/* CTA Buttons - Right Side */}
+          <div className="hidden lg:flex lg:items-center lg:gap-x-[30px]">
             <Link
               href="https://app.prohost.ai/signin"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors whitespace-nowrap"
+              className="text-sm font-medium text-black hover:text-primary-600 transition-colors whitespace-nowrap"
+              style={{ lineHeight: '21px' }}
             >
               Log In
             </Link>
-            <Link
-              href="https://cal.com/billu/prohostdemo"
-              target="_blank"
-              className="rounded-full border border-gray-300 px-5 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors whitespace-nowrap"
-            >
-              Book a demo
-            </Link>
-            <Link
-              href="https://app.prohost.ai/signup"
-              className="rounded-full bg-gray-900 px-5 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors whitespace-nowrap"
-            >
-              Sign up now
-            </Link>
+            <div className="flex items-center gap-x-3">
+              <Link
+                href="https://cal.com/billu/prohostdemo"
+                target="_blank"
+                className="rounded-full border border-black px-5 py-2 text-sm font-medium text-black hover:bg-gray-50 transition-colors whitespace-nowrap"
+                style={{ lineHeight: '21px' }}
+              >
+                Book a demo
+              </Link>
+              <Link
+                href="https://app.prohost.ai/signup"
+                className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors whitespace-nowrap"
+                style={{ lineHeight: '21px' }}
+              >
+                Sign up now
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -172,6 +252,21 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden">
             <div className="space-y-1 pb-3 pt-2">
+              {/* Mobile Features Section */}
+              <div className="px-3 py-2">
+                <p className="text-sm font-semibold text-gray-900 mb-2">Features</p>
+                {featuresMenu.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="block rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -233,5 +328,124 @@ export default function Header() {
         )}
       </nav>
     </header>
+
+      {/* Full-screen Features Dropdown */}
+      {featuresOpen && (
+        <div
+          data-dropdown
+          className={`fixed left-0 right-0 top-20 z-10 ${
+            isAnimating ? 'animate-slide-down' : ''
+          }`}>
+          <div className="bg-white border-t border-gray-100">
+            <div className="py-8">
+              <div className="px-4 sm:px-8 lg:px-[30px]">
+                <div className="lg:ml-[calc(32px+40px+12px)]">
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Features</h3>
+                  <div className="grid grid-cols-2 gap-8 max-w-2xl">
+                {/* Column 1 */}
+                <div className="space-y-4">
+                  {featuresMenu.slice(0, 3).map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block"
+                      onClick={() => setFeaturesOpen(false)}
+                    >
+                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+                {/* Column 2 */}
+                <div className="space-y-4">
+                  {featuresMenu.slice(3).map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block"
+                      onClick={() => setFeaturesOpen(false)}
+                    >
+                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Full-screen Resources Dropdown */}
+      {resourcesOpen && (
+        <div
+          data-dropdown
+          className={`fixed left-0 right-0 top-20 z-10 ${
+            isAnimating ? 'animate-slide-down' : ''
+          }`}>
+          <div className="bg-white border-t border-gray-100">
+            <div className="py-8">
+              <div className="px-4 sm:px-8 lg:px-[30px]">
+                <div className="lg:ml-[calc(32px+40px+12px)]">
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Resources</h3>
+                  <div className="grid grid-cols-2 gap-8 max-w-2xl">
+                {/* Column 1 */}
+                <div className="space-y-4">
+                  {resourcesMenu.slice(0, 3).map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      className="block"
+                      onClick={() => setResourcesOpen(false)}
+                    >
+                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+                {/* Column 2 */}
+                <div className="space-y-4">
+                  {resourcesMenu.slice(3).map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      className="block"
+                      onClick={() => setResourcesOpen(false)}
+                    >
+                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
