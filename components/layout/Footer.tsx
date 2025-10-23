@@ -15,7 +15,7 @@ const footerLinks = {
     links: [
       { name: 'Blog', href: '/blog' },
       { name: 'Help Center', href: '/help' },
-      { name: 'Vendor Directory', href: '/vendors' },
+      { name: 'Vendor Marketplace', href: '/vendors' },
       { name: 'Case Studies', href: '/case-studies' },
     ],
   },
@@ -33,7 +33,6 @@ const footerLinks = {
     links: [
       { name: 'Privacy Policy', href: '/privacy' },
       { name: 'Terms of Service', href: '/terms' },
-      { name: 'Cookie Policy', href: '/cookies' },
       { name: 'GDPR', href: '/gdpr' },
     ],
   },
@@ -108,9 +107,6 @@ export default function Footer() {
                 </Link>
                 <Link href="/terms" className="hover:text-white transition-colors">
                   Terms
-                </Link>
-                <Link href="/cookies" className="hover:text-white transition-colors">
-                  Cookies
                 </Link>
               </div>
             </div>
