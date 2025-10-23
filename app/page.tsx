@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import CleaningsDemo from '@/components/CleaningsDemo';
 
 export default function HomePage() {
   const [activeCalendarTab, setActiveCalendarTab] = useState('all-in-one');
@@ -146,6 +147,41 @@ export default function HomePage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Interactive Cleanings Demo Section */}
+        <section className="py-24 bg-gradient-to-b from-green-50 to-white">
+          <div className="max-width-container section-padding">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                🧹 Interactive Demo
+              </div>
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Experience Cleanings Management
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                See how ProhostAI simplifies turnover cleanings with automatic scheduling,
+                real-time status tracking, and smart cleaner assignments. Click around to try it!
+              </p>
+            </div>
+
+            <div className="mt-12">
+              <CleaningsDemo />
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link
+                href="https://app.prohost.ai/signup"
+                target="_blank"
+                className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-8 py-4 text-base font-semibold text-white shadow-lg hover:bg-green-700 transition-all hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                Start Managing Cleanings
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
             </div>
           </div>
         </section>
