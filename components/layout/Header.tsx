@@ -98,7 +98,7 @@ export default function Header() {
               {/* Features Dropdown */}
               <div className="relative">
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5"
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
                   style={{ lineHeight: '21px' }}
                   onClick={() => setFeaturesOpen(!featuresOpen)}
                 >
@@ -119,7 +119,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-medium transition-all rounded-lg px-3 py-1.5 ${
+                  className={`text-sm font-medium transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100 ${
                     pathname === item.href ? 'text-primary-600' : 'text-black'
                   }`}
                   style={{ lineHeight: '21px' }}
@@ -131,7 +131,7 @@ export default function Header() {
               {/* Resources Dropdown */}
               <div className="relative">
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5"
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
                   style={{ lineHeight: '21px' }}
                   onClick={() => setResourcesOpen(!resourcesOpen)}
                 >
@@ -279,10 +279,10 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Overlay */}
+      {/* Overlay - Below navigation */}
       {(featuresOpen || resourcesOpen) && (
         <div
-          className="fixed inset-0 bg-black/10 z-40"
+          className="fixed inset-0 top-[65px] bg-black/10 z-30"
           onClick={() => {
             setFeaturesOpen(false);
             setResourcesOpen(false);
@@ -292,7 +292,7 @@ export default function Header() {
 
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
-        <div className={`fixed left-0 right-0 top-[57px] z-50 transition-all duration-300 ease-out ${
+        <div className={`fixed left-0 right-0 top-[65px] z-50 transition-all duration-300 ease-out ${
           featuresOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
         }`}>
           <div className="bg-white border-t border-gray-100 shadow-lg">
@@ -343,7 +343,7 @@ export default function Header() {
 
       {/* Full-screen Resources Dropdown */}
       {resourcesOpen && (
-        <div className={`fixed left-0 right-0 top-[57px] z-50 transition-all duration-300 ease-out ${
+        <div className={`fixed left-0 right-0 top-[65px] z-50 transition-all duration-300 ease-out ${
           resourcesOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
         }`}>
           <div className="bg-white border-t border-gray-100 shadow-lg">
