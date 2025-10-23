@@ -49,6 +49,21 @@ html {
   }
 }
 
+@keyframes slide-down {
+  from {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
+}
+
 .section-padding {
   padding-left: 1rem;
   padding-right: 1rem;

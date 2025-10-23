@@ -76,12 +76,39 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const pathname = usePathname();
+
+  const handleDropdownToggle = (dropdown: 'features' | 'resources') => {
+    if (dropdown === 'features') {
+      if (resourcesOpen) {
+        // Switching from Resources to Features - no animation
+        setResourcesOpen(false);
+        setFeaturesOpen(true);
+        setIsAnimating(false);
+      } else {
+        // Opening Features fresh - animate
+        setFeaturesOpen(!featuresOpen);
+        setIsAnimating(!featuresOpen);
+      }
+    } else {
+      if (featuresOpen) {
+        // Switching from Features to Resources - no animation
+        setFeaturesOpen(false);
+        setResourcesOpen(true);
+        setIsAnimating(false);
+      } else {
+        // Opening Resources fresh - animate
+        setResourcesOpen(!resourcesOpen);
+        setIsAnimating(!resourcesOpen);
+      }
+    }
+  };
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md">
       <nav className="px-4 sm:px-8 lg:px-[30px]" aria-label="Global">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between h-20">
           {/* Logo and Desktop Navigation - Left Side */}
           <div className="flex items-center gap-10">
             {/* Logo */}
@@ -100,7 +127,7 @@ export default function Header() {
                 <button
                   className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
                   style={{ lineHeight: '21px' }}
-                  onClick={() => setFeaturesOpen(!featuresOpen)}
+                  onClick={() => handleDropdownToggle('features')}
                 >
                   Features
                   <svg
@@ -133,7 +160,7 @@ export default function Header() {
                 <button
                   className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
                   style={{ lineHeight: '21px' }}
-                  onClick={() => setResourcesOpen(!resourcesOpen)}
+                  onClick={() => handleDropdownToggle('resources')}
                 >
                   Resources
                   <svg
@@ -279,26 +306,27 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Overlay - Below navigation */}
+      {/* Overlay - Covers whole page */}
       {(featuresOpen || resourcesOpen) && (
         <div
-          className="fixed inset-0 top-[65px] bg-black/10 z-30"
+          className="fixed inset-0 bg-black/10 z-30"
           onClick={() => {
             setFeaturesOpen(false);
             setResourcesOpen(false);
+            setIsAnimating(false);
           }}
         />
       )}
 
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
-        <div className={`fixed left-0 right-0 top-[65px] z-50 transition-all duration-300 ease-out ${
-          featuresOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+        <div className={`fixed left-0 right-0 top-20 z-50 ${
+          isAnimating ? 'animate-slide-down' : ''
         }`}>
           <div className="bg-white border-t border-gray-100 shadow-lg">
             <div className="py-8">
               <div className="px-4 sm:px-8 lg:px-[30px]">
-                <div className="lg:ml-[calc(32px+40px)]">
+                <div className="lg:ml-[calc(32px+40px+12px)]">
                   <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Features</h3>
                   <div className="grid grid-cols-2 gap-8 max-w-2xl">
                 {/* Column 1 */}
@@ -347,13 +375,13 @@ export default function Header() {
 
       {/* Full-screen Resources Dropdown */}
       {resourcesOpen && (
-        <div className={`fixed left-0 right-0 top-[65px] z-50 transition-all duration-300 ease-out ${
-          resourcesOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+        <div className={`fixed left-0 right-0 top-20 z-50 ${
+          isAnimating ? 'animate-slide-down' : ''
         }`}>
           <div className="bg-white border-t border-gray-100 shadow-lg">
             <div className="py-8">
               <div className="px-4 sm:px-8 lg:px-[30px]">
-                <div className="lg:ml-[calc(32px+40px)]">
+                <div className="lg:ml-[calc(32px+40px+12px)]">
                   <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Resources</h3>
                   <div className="grid grid-cols-2 gap-8 max-w-2xl">
                 {/* Column 1 */}
