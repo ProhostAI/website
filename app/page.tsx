@@ -57,9 +57,9 @@ export default function HomePage() {
 
               {/* Product Hunt Badge */}
               <div className="mt-8 flex justify-center">
-                <a href="https://www.producthunt.com/posts/prohostai" target="_blank" rel="noopener noreferrer">
-                  <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=123456&theme=light"
-                       alt="ProhostAI - AI assistant for vacation rental hosts | Product Hunt"
+                <a href="https://www.producthunt.com/products/prohostai" target="_blank" rel="noopener noreferrer">
+                  <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1019663&theme=light"
+                       alt="ProhostAI - AI assistant for Airbnb messaging, tasks, and cleanings | Product Hunt"
                        className="h-12" />
                 </a>
               </div>
@@ -67,8 +67,33 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Social Proof Section */}
+        <section className="py-12 bg-white border-t border-gray-100">
+          <div className="max-width-container section-padding">
+            <div className="text-center">
+              <p className="text-sm text-gray-500 mb-6">Backed by top investors</p>
+              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
+                <img src="/images/yc.png" alt="Y Combinator" className="h-10 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                <img src="/images/pear.png" alt="Pear VC" className="h-10 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                <span className="text-xl font-semibold text-gray-400">Amino Capital</span>
+                <span className="text-xl font-semibold text-gray-400">Data Tech Fund</span>
+                <span className="text-xl font-semibold text-gray-400">Pioneer</span>
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <p className="text-sm text-gray-500 mb-6">Founded by team from</p>
+                <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
+                  <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                  <img src="/images/dropbox.png" alt="Dropbox" className="h-8 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                  <img src="/images/harvard.png" alt="Harvard" className="h-10 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Integrations Section */}
-        <section className="py-16 bg-white border-t border-gray-100">
+        <section className="py-16 bg-gray-50">
           <div className="max-width-container section-padding">
             <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
               Connect your listings in minutes
@@ -84,7 +109,7 @@ export default function HomePage() {
         </section>
 
         {/* AI Features Stack Section */}
-        <section className="py-24 bg-gray-50">
+        <section className="py-24 bg-white">
           <div className="max-width-container section-padding">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
