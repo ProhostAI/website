@@ -96,22 +96,8 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Backers Section */}
-          <div className="mt-12 border-t border-gray-800 pt-8">
-            <div className="text-center">
-              <p className="text-sm text-gray-400 mb-4">Backed by</p>
-              <div className="flex justify-center items-center gap-8">
-                <img
-                  src="/images/yc.png"
-                  alt="Y Combinator"
-                  className="h-8 opacity-60 hover:opacity-100 transition-opacity"
-                />
-              </div>
-            </div>
-          </div>
-
           {/* Bottom Bar */}
-          <div className="mt-8 border-t border-gray-800 pt-8">
+          <div className="mt-12 border-t border-gray-800 pt-8">
             <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
               <p className="text-sm">
                 © {currentYear} ProhostAI. All rights reserved.

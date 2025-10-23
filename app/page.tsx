@@ -356,29 +356,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Backers Marquee Section */}
-        <section className="py-16 bg-gray-50 border-t border-gray-100">
-          <div className="max-width-container section-padding">
-            <div className="text-center mb-8">
-              <p className="text-sm text-gray-600 mb-4">Backed by</p>
-              <div className="flex flex-wrap justify-center items-center gap-8 mb-8">
-                <img src="/images/y_combinator_logo.svg.png" alt="Y Combinator" className="h-8 opacity-70" />
-                <span className="text-xl font-semibold text-gray-600">Pioneer</span>
-                <span className="text-xl font-semibold text-gray-600">Amino Capital</span>
-                <img src="/images/pear.png" alt="Pear VC" className="h-8 opacity-70" />
-                <span className="text-xl font-semibold text-gray-600">Data Tech Fund</span>
-                <span className="text-xl font-semibold text-gray-600">Multimoda</span>
-              </div>
-              <p className="text-sm text-gray-600 mb-4">Team from</p>
-              <div className="flex flex-wrap justify-center items-center gap-8">
-                <img src="/images/airbnb.png" alt="Airbnb" className="h-6 opacity-70" />
-                <img src="/images/dropbox.png" alt="Dropbox" className="h-6 opacity-70" />
-                <img src="/images/harvard.png" alt="Harvard University" className="h-8 opacity-70" />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Final CTA Section */}
         <section className="py-24 bg-gradient-to-br from-primary-600 to-purple-700">
           <div className="max-width-container section-padding text-center">
