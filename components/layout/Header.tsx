@@ -94,7 +94,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop navigation */}
-            <div className="hidden lg:flex lg:gap-x-4 lg:items-center">
+            <div className="hidden lg:flex lg:gap-x-2 lg:items-center">
               {/* Features Dropdown */}
               <div
                 className="relative"
@@ -102,7 +102,7 @@ export default function Header() {
                 onMouseLeave={() => setFeaturesOpen(false)}
               >
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-full px-3 py-1.5 hover:bg-gray-100"
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
                   style={{ lineHeight: '21px' }}
                 >
                   Features
@@ -122,7 +122,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-medium transition-all rounded-full px-3 py-1.5 hover:bg-gray-100 ${
+                  className={`text-sm font-medium transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100 ${
                     pathname === item.href ? 'text-primary-600' : 'text-black'
                   }`}
                   style={{ lineHeight: '21px' }}
@@ -138,7 +138,7 @@ export default function Header() {
                 onMouseLeave={() => setResourcesOpen(false)}
               >
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-full px-3 py-1.5 hover:bg-gray-100"
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
                   style={{ lineHeight: '21px' }}
                 >
                   Resources
@@ -288,26 +288,28 @@ export default function Header() {
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
         <div
-          className="fixed left-0 right-0 top-[65px] bg-white border-t border-gray-100 shadow-lg"
+          className="fixed left-0 right-0 top-[57px] pt-2"
           onMouseEnter={() => setFeaturesOpen(true)}
           onMouseLeave={() => setFeaturesOpen(false)}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-[30px] py-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {featuresMenu.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="group block p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <h3 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 mb-1">
-                    {item.name}
-                  </h3>
-                  <p className="text-xs text-gray-500">
-                    {item.description}
-                  </p>
-                </Link>
-              ))}
+          <div className="bg-white border-t border-gray-100 shadow-lg">
+            <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-[30px] py-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                {featuresMenu.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="group block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 mb-1">
+                      {item.name}
+                    </h3>
+                    <p className="text-xs text-gray-500">
+                      {item.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -316,28 +318,30 @@ export default function Header() {
       {/* Full-screen Resources Dropdown */}
       {resourcesOpen && (
         <div
-          className="fixed left-0 right-0 top-[65px] bg-white border-t border-gray-100 shadow-lg"
+          className="fixed left-0 right-0 top-[57px] pt-2"
           onMouseEnter={() => setResourcesOpen(true)}
           onMouseLeave={() => setResourcesOpen(false)}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-[30px] py-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {resourcesMenu.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noopener noreferrer" : undefined}
-                  className="group block p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <h3 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 mb-1">
-                    {item.name}
-                  </h3>
-                  <p className="text-xs text-gray-500">
-                    {item.description}
-                  </p>
-                </Link>
-              ))}
+          <div className="bg-white border-t border-gray-100 shadow-lg">
+            <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-[30px] py-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                {resourcesMenu.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
+                    className="group block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 mb-1">
+                      {item.name}
+                    </h3>
+                    <p className="text-xs text-gray-500">
+                      {item.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
