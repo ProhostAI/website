@@ -96,14 +96,11 @@ export default function Header() {
             {/* Desktop navigation */}
             <div className="hidden lg:flex lg:gap-x-2 lg:items-center">
               {/* Features Dropdown */}
-              <div
-                className="relative"
-                onMouseEnter={() => setFeaturesOpen(true)}
-                onMouseLeave={() => setFeaturesOpen(false)}
-              >
+              <div className="relative">
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5"
                   style={{ lineHeight: '21px' }}
+                  onClick={() => setFeaturesOpen(!featuresOpen)}
                 >
                   Features
                   <svg
@@ -122,7 +119,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-medium transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100 ${
+                  className={`text-sm font-medium transition-all rounded-lg px-3 py-1.5 ${
                     pathname === item.href ? 'text-primary-600' : 'text-black'
                   }`}
                   style={{ lineHeight: '21px' }}
@@ -132,14 +129,11 @@ export default function Header() {
               ))}
 
               {/* Resources Dropdown */}
-              <div
-                className="relative"
-                onMouseEnter={() => setResourcesOpen(true)}
-                onMouseLeave={() => setResourcesOpen(false)}
-              >
+              <div className="relative">
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
+                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5"
                   style={{ lineHeight: '21px' }}
+                  onClick={() => setResourcesOpen(!resourcesOpen)}
                 >
                   Resources
                   <svg
@@ -285,30 +279,62 @@ export default function Header() {
         )}
       </nav>
 
+      {/* Overlay */}
+      {(featuresOpen || resourcesOpen) && (
+        <div
+          className="fixed inset-0 bg-black/10 z-40"
+          onClick={() => {
+            setFeaturesOpen(false);
+            setResourcesOpen(false);
+          }}
+        />
+      )}
+
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
-        <div
-          className="fixed left-0 right-0 top-[57px] pt-2"
-          onMouseEnter={() => setFeaturesOpen(true)}
-          onMouseLeave={() => setFeaturesOpen(false)}
-        >
+        <div className={`fixed left-0 right-0 top-[57px] z-50 transition-all duration-300 ease-out ${
+          featuresOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+        }`}>
           <div className="bg-white border-t border-gray-100 shadow-lg">
-            <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-[30px] py-8">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                {featuresMenu.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="group block p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <h3 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 mb-1">
-                      {item.name}
-                    </h3>
-                    <p className="text-xs text-gray-500">
-                      {item.description}
-                    </p>
-                  </Link>
-                ))}
+            <div className="px-4 sm:px-8 lg:px-[30px] py-8">
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Features</h3>
+              <div className="grid grid-cols-2 gap-8 max-w-2xl">
+                {/* Column 1 */}
+                <div className="space-y-4">
+                  {featuresMenu.slice(0, 3).map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block"
+                      onClick={() => setFeaturesOpen(false)}
+                    >
+                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+                {/* Column 2 */}
+                <div className="space-y-4">
+                  {featuresMenu.slice(3).map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block"
+                      onClick={() => setFeaturesOpen(false)}
+                    >
+                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -317,30 +343,53 @@ export default function Header() {
 
       {/* Full-screen Resources Dropdown */}
       {resourcesOpen && (
-        <div
-          className="fixed left-0 right-0 top-[57px] pt-2"
-          onMouseEnter={() => setResourcesOpen(true)}
-          onMouseLeave={() => setResourcesOpen(false)}
-        >
+        <div className={`fixed left-0 right-0 top-[57px] z-50 transition-all duration-300 ease-out ${
+          resourcesOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+        }`}>
           <div className="bg-white border-t border-gray-100 shadow-lg">
-            <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-[30px] py-8">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                {resourcesMenu.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    target={item.external ? "_blank" : undefined}
-                    rel={item.external ? "noopener noreferrer" : undefined}
-                    className="group block p-4 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <h3 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 mb-1">
-                      {item.name}
-                    </h3>
-                    <p className="text-xs text-gray-500">
-                      {item.description}
-                    </p>
-                  </Link>
-                ))}
+            <div className="px-4 sm:px-8 lg:px-[30px] py-8">
+              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Resources</h3>
+              <div className="grid grid-cols-2 gap-8 max-w-2xl">
+                {/* Column 1 */}
+                <div className="space-y-4">
+                  {resourcesMenu.slice(0, 3).map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      className="block"
+                      onClick={() => setResourcesOpen(false)}
+                    >
+                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+                {/* Column 2 */}
+                <div className="space-y-4">
+                  {resourcesMenu.slice(3).map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      className="block"
+                      onClick={() => setResourcesOpen(false)}
+                    >
+                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
+                        {item.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
