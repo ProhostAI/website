@@ -16,7 +16,7 @@ export default function HomePage() {
       <main className="pt-16">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-purple-50 to-white">
-          <div className="max-width-container section-padding py-24 sm:py-32">
+          <div className="max-w-[1240px] mx-auto section-padding py-24 sm:py-32">
             <div className="text-center">
               {/* Announcement Badge */}
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -63,6 +63,15 @@ export default function HomePage() {
                        className="h-12" />
                 </a>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Hero Visual Section */}
+        <section className="relative overflow-hidden bg-white py-12">
+          <div className="max-w-[1320px] mx-auto section-padding">
+            <div className="w-full h-[600px] bg-gray-200 rounded-2xl flex items-center justify-center">
+              <p className="text-gray-400 text-lg">Hero Visual Placeholder</p>
             </div>
           </div>
         </section>
