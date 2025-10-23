@@ -113,7 +113,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop navigation */}
-            <div ref={navRef} className="hidden lg:flex lg:gap-x-[30px] lg:items-center relative">
+            <div ref={navRef} className="hidden lg:flex lg:gap-x-4 lg:items-center relative">
               {/* Sliding hover indicator */}
               <div
                 className="absolute bg-gray-100 rounded-full h-[33px] pointer-events-none transition-all duration-300 ease-out"
