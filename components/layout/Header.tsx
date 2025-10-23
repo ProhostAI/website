@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 const navigation = [
@@ -105,9 +105,29 @@ export default function Header() {
     }
   };
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('header')) {
+        setFeaturesOpen(false);
+        setResourcesOpen(false);
+        setIsAnimating(false);
+      }
+    };
+
+    if (featuresOpen || resourcesOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [featuresOpen, resourcesOpen]);
+
   return (
-    <header className="fixed top-0 z-[100] w-full bg-white/80 backdrop-blur-md">
-      <nav className="px-4 sm:px-8 lg:px-[30px]" aria-label="Global">
+    <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md">
+      <nav className="px-4 sm:px-8 lg:px-[30px] relative z-20" aria-label="Global">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Desktop Navigation - Left Side */}
           <div className="flex items-center gap-10">
@@ -308,7 +328,7 @@ export default function Header() {
 
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
-        <div className={`fixed left-0 right-0 top-20 z-40 ${
+        <div className={`fixed left-0 right-0 top-20 z-10 ${
           isAnimating ? 'animate-slide-down' : ''
         }`}>
           <div className="bg-white border-t border-gray-100">
@@ -363,7 +383,7 @@ export default function Header() {
 
       {/* Full-screen Resources Dropdown */}
       {resourcesOpen && (
-        <div className={`fixed left-0 right-0 top-20 z-40 ${
+        <div className={`fixed left-0 right-0 top-20 z-10 ${
           isAnimating ? 'animate-slide-down' : ''
         }`}>
           <div className="bg-white border-t border-gray-100">
@@ -418,18 +438,6 @@ export default function Header() {
             </div>
           </div>
         </div>
-      )}
-
-      {/* Overlay - Covers page below navigation and behind dropdown */}
-      {(featuresOpen || resourcesOpen) && (
-        <div
-          className="fixed inset-0 top-20 bg-black/10 z-30"
-          onClick={() => {
-            setFeaturesOpen(false);
-            setResourcesOpen(false);
-            setIsAnimating(false);
-          }}
-        />
       )}
     </header>
   );
