@@ -51,7 +51,7 @@ html {
 
 @keyframes slide-down {
   from {
-    transform: translateY(-16px);
+    transform: translateY(-100%);
     opacity: 0;
   }
   to {

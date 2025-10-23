@@ -306,10 +306,10 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Overlay - Covers entire page like a modal */}
+      {/* Overlay - Covers page below navigation */}
       {(featuresOpen || resourcesOpen) && (
         <div
-          className="fixed inset-0 bg-black/10 z-40"
+          className="fixed inset-0 top-20 bg-black/10 z-30"
           onClick={() => {
             setFeaturesOpen(false);
             setResourcesOpen(false);
@@ -320,7 +320,7 @@ export default function Header() {
 
       {/* Full-screen Features Dropdown */}
       {featuresOpen && (
-        <div className={`fixed left-0 right-0 top-20 z-50 ${
+        <div className={`fixed left-0 right-0 top-20 z-40 ${
           isAnimating ? 'animate-slide-down' : ''
         }`}>
           <div className="bg-white border-t border-gray-100">
@@ -375,7 +375,7 @@ export default function Header() {
 
       {/* Full-screen Resources Dropdown */}
       {resourcesOpen && (
-        <div className={`fixed left-0 right-0 top-20 z-50 ${
+        <div className={`fixed left-0 right-0 top-20 z-40 ${
           isAnimating ? 'animate-slide-down' : ''
         }`}>
           <div className="bg-white border-t border-gray-100">
