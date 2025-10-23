@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 const navigation = [
@@ -76,7 +76,26 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const navRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  const updateIndicator = (element: HTMLElement | null) => {
+    if (!element || !navRef.current) {
+      setIndicatorStyle({ left: 0, width: 0, opacity: 0 });
+      return;
+    }
+
+    const navRect = navRef.current.getBoundingClientRect();
+    const itemRect = element.getBoundingClientRect();
+
+    setIndicatorStyle({
+      left: itemRect.left - navRect.left,
+      width: itemRect.width,
+      opacity: 1,
+    });
+  };
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md">
@@ -94,15 +113,33 @@ export default function Header() {
             </Link>
 
             {/* Desktop navigation */}
-            <div className="hidden lg:flex lg:gap-x-[30px] lg:items-center">
+            <div ref={navRef} className="hidden lg:flex lg:gap-x-[30px] lg:items-center relative">
+              {/* Sliding hover indicator */}
+              <div
+                className="absolute bg-gray-100 rounded-full h-[33px] pointer-events-none transition-all duration-300 ease-out"
+                style={{
+                  left: `${indicatorStyle.left}px`,
+                  width: `${indicatorStyle.width}px`,
+                  opacity: indicatorStyle.opacity,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                }}
+              />
+
               {/* Features Dropdown */}
               <div
-                className="relative"
-                onMouseEnter={() => setFeaturesOpen(true)}
-                onMouseLeave={() => setFeaturesOpen(false)}
+                className="relative z-10"
+                onMouseEnter={(e) => {
+                  setFeaturesOpen(true);
+                  updateIndicator(e.currentTarget.querySelector('button'));
+                }}
+                onMouseLeave={() => {
+                  setFeaturesOpen(false);
+                  setIndicatorStyle({ left: 0, width: 0, opacity: 0 });
+                }}
               >
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-full px-3 py-1.5 hover:bg-gray-100"
+                  className="flex items-center text-sm font-medium text-black transition-colors rounded-full px-3 py-1.5"
                   style={{ lineHeight: '21px' }}
                 >
                   Features
@@ -145,10 +182,12 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-medium transition-all rounded-full px-3 py-1.5 hover:bg-gray-100 ${
+                  className={`text-sm font-medium transition-colors rounded-full px-3 py-1.5 relative z-10 ${
                     pathname === item.href ? 'text-primary-600' : 'text-black'
                   }`}
                   style={{ lineHeight: '21px' }}
+                  onMouseEnter={(e) => updateIndicator(e.currentTarget)}
+                  onMouseLeave={() => setIndicatorStyle({ left: 0, width: 0, opacity: 0 })}
                 >
                   {item.name}
                 </Link>
@@ -156,12 +195,18 @@ export default function Header() {
 
               {/* Resources Dropdown */}
               <div
-                className="relative"
-                onMouseEnter={() => setResourcesOpen(true)}
-                onMouseLeave={() => setResourcesOpen(false)}
+                className="relative z-10"
+                onMouseEnter={(e) => {
+                  setResourcesOpen(true);
+                  updateIndicator(e.currentTarget.querySelector('button'));
+                }}
+                onMouseLeave={() => {
+                  setResourcesOpen(false);
+                  setIndicatorStyle({ left: 0, width: 0, opacity: 0 });
+                }}
               >
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-full px-3 py-1.5 hover:bg-gray-100"
+                  className="flex items-center text-sm font-medium text-black transition-colors rounded-full px-3 py-1.5"
                   style={{ lineHeight: '21px' }}
                 >
                   Resources
