@@ -306,10 +306,10 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Overlay - Covers whole page */}
+      {/* Overlay - Covers entire page like a modal */}
       {(featuresOpen || resourcesOpen) && (
         <div
-          className="fixed inset-0 bg-black/10 z-30"
+          className="fixed inset-0 bg-black/10 z-40"
           onClick={() => {
             setFeaturesOpen(false);
             setResourcesOpen(false);
@@ -323,7 +323,7 @@ export default function Header() {
         <div className={`fixed left-0 right-0 top-20 z-50 ${
           isAnimating ? 'animate-slide-down' : ''
         }`}>
-          <div className="bg-white border-t border-gray-100 shadow-lg">
+          <div className="bg-white border-t border-gray-100">
             <div className="py-8">
               <div className="px-4 sm:px-8 lg:px-[30px]">
                 <div className="lg:ml-[calc(32px+40px+12px)]">
@@ -378,7 +378,7 @@ export default function Header() {
         <div className={`fixed left-0 right-0 top-20 z-50 ${
           isAnimating ? 'animate-slide-down' : ''
         }`}>
-          <div className="bg-white border-t border-gray-100 shadow-lg">
+          <div className="bg-white border-t border-gray-100">
             <div className="py-8">
               <div className="px-4 sm:px-8 lg:px-[30px]">
                 <div className="lg:ml-[calc(32px+40px+12px)]">
