@@ -71,10 +71,10 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-base font-medium transition-colors hover:text-primary-600 ${
+                  className={`text-sm font-medium transition-colors hover:text-primary-600 ${
                     pathname === item.href ? 'text-primary-600' : 'text-black'
                   }`}
-                  style={{ lineHeight: '22px' }}
+                  style={{ lineHeight: '21px' }}
                 >
                   {item.name}
                 </Link>
@@ -83,8 +83,8 @@ export default function Header() {
               {/* Resources Dropdown */}
               <div className="relative">
                 <button
-                  className="flex items-center text-base font-medium text-black hover:text-primary-600 transition-colors"
-                  style={{ lineHeight: '22px' }}
+                  className="flex items-center text-sm font-medium text-black hover:text-primary-600 transition-colors"
+                  style={{ lineHeight: '21px' }}
                   onClick={() => setResourcesOpen(!resourcesOpen)}
                   onBlur={() => setTimeout(() => setResourcesOpen(false), 200)}
                 >
