@@ -1,74 +1,53 @@
-'use client';
-
-import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Pricing - ProhostAI | Simple, Transparent Pricing',
+  description: 'ProhostAI pricing - $15/month per listing with everything included. 14-day free trial, no credit card required.',
+};
 
 const plans = [
   {
-    name: 'Free',
-    price: { monthly: 0, yearly: 0 },
-    description: 'Get started with essential tools',
-    popular: false,
-    features: [
-      'AI Memory',
-      'Task Manager',
-      'Calendar',
-      'iOS & Android app',
-      'Earnings dashboard',
-      'Messaging analytics',
-    ],
-    cta: 'Get Started',
-    ctaLink: 'https://app.prohostai.com/signup',
-  },
-  {
-    name: 'Plus',
-    price: { monthly: 15, yearly: 12 },
-    description: 'Perfect for growing hosts',
-    popular: false,
-    features: [
-      'Everything in Free, plus:',
-      'Unlimited AI Messaging',
-      'Unlimited Ask AI',
-      'Docs uploads for custom training',
-      'Branding-free guidebooks',
-      'Scheduled guest communications',
-    ],
-    cta: 'Start Free Trial',
-    ctaLink: 'https://app.prohostai.com/signup',
-  },
-  {
-    name: 'Pro',
-    price: { monthly: 25, yearly: 20 },
-    description: 'For professional hosts',
+    name: 'Pro Plan',
+    price: 15,
+    description: 'Everything you need to automate your hosting business',
     popular: true,
-    minimumMonthly: 50,
+    minimumMonthly: 30,
     features: [
-      'Everything in Plus, plus:',
-      'Autopilot: 70%+ guest replies',
-      'Continuous learning across channels',
-      'Advanced guidebooks + upsells',
-      'Priority support & SLA',
-      'Dedicated onboarding',
+      'Unlimited AI replies',
+      'AI Messaging Autopilot',
+      'AI maintenance task manager',
+      'Automated cleaning scheduling',
+      'AI Memory - continuously learning',
+      'AI Reviews - analyze & write reviews',
+      'AI Guidebooks with upsells',
+      'Earnings reports & analytics',
+      'Multi-calendar view',
+      'Upsells to fill gap nights',
+      'iOS & Android apps',
       'Unlimited team members',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Start 14-Day Free Trial',
     ctaLink: 'https://app.prohostai.com/signup',
   },
   {
     name: 'Enterprise',
-    price: { monthly: null, yearly: null },
+    price: null,
     description: 'For hosts with 50+ listings',
     popular: false,
     features: [
+      'Everything in Pro, plus:',
       'Custom pricing & contract',
-      'Unlimited team members',
-      'Unlimited AI messages',
-      'Custom training & assistance',
       'Dedicated account manager',
+      'Custom training & onboarding',
       'Priority feature requests',
       'SLA & uptime guarantee',
+      'API access',
+      'White-label options',
+      'Advanced reporting',
+      'Phone support',
     ],
     cta: "Let's Talk",
     ctaLink: 'https://cal.com/billu/prohostdemo',
@@ -77,34 +56,32 @@ const plans = [
 
 const faqs = [
   {
-    question: 'Which plan should I start with?',
-    answer: 'Most hosts start with our Plus plan to access unlimited AI messaging and core automation features. If you manage more than 2 properties or want fully automated guest replies, the Pro plan is recommended.',
-  },
-  {
-    question: 'How does per-listing pricing work?',
-    answer: 'You pay a monthly fee for each listing you connect. For example, if you have 3 listings on the Plus plan, you\'ll pay $45/month ($15 × 3). Pro plan has a $50 minimum.',
-  },
-  {
-    question: 'Are there annual discounts?',
-    answer: 'Yes! Save 20% when you pay annually. Plus plan becomes $12/listing/month and Pro becomes $20/listing/month when billed yearly.',
-  },
-  {
-    question: 'What payment methods do you accept?',
-    answer: 'We accept all major credit cards through Stripe. Enterprise customers can also pay via ACH or wire transfer.',
-  },
-  {
-    question: 'Can I change plans anytime?',
-    answer: 'Absolutely! You can upgrade or downgrade your plan at any time. Changes take effect immediately and we\'ll prorate your billing.',
+    question: 'How does the pricing work?',
+    answer: '$15 per listing per month. For example, if you have 3 listings, you\'ll pay $45/month. There\'s a $30 minimum (2 listings).',
   },
   {
     question: 'Is there a free trial?',
-    answer: 'Yes! Both Plus and Pro plans come with a 14-day free trial. No credit card required to start.',
+    answer: 'Yes! You get 14 days free with full access to all features. No credit card required to start.',
+  },
+  {
+    question: 'What\'s included in the $15/month?',
+    answer: 'Everything! Unlimited AI messages, Autopilot mode, maintenance tasks, cleaning scheduling, AI memory, reviews, guidebooks, analytics, mobile apps - all features are included.',
+  },
+  {
+    question: 'Can I cancel anytime?',
+    answer: 'Absolutely! You can cancel or change your plan at any time. No contracts or hidden fees.',
+  },
+  {
+    question: 'What integrations do you support?',
+    answer: 'We integrate with Airbnb, Hostaway, OwnerRez, Hospitable, and Guesty. More coming soon!',
+  },
+  {
+    question: 'Do you offer annual billing?',
+    answer: 'Yes! Contact us for annual billing options and discounts.',
   },
 ];
 
 export default function PricingPage() {
-  const [isYearly, setIsYearly] = useState(false);
-
   return (
     <>
       <Header />
@@ -118,42 +95,19 @@ export default function PricingPage() {
                 Simple, transparent pricing
               </h1>
               <p className="text-xl text-gray-600">
-                Choose the plan that fits your hosting business. All plans include our core features.
+                One price, all features included. No hidden fees.
               </p>
             </div>
 
-            {/* Billing Toggle */}
-            <div className="flex items-center justify-center mb-12">
-              <span className={`mr-3 ${!isYearly ? 'text-gray-900 font-medium' : 'text-gray-500'}`}>
-                Monthly
-              </span>
-              <button
-                onClick={() => setIsYearly(!isYearly)}
-                className="relative inline-flex h-8 w-14 items-center rounded-full bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
-              >
-                <span
-                  className={`inline-block h-6 w-6 transform rounded-full bg-white shadow transition-transform ${
-                    isYearly ? 'translate-x-7' : 'translate-x-1'
-                  }`}
-                />
-              </button>
-              <span className={`ml-3 ${isYearly ? 'text-gray-900 font-medium' : 'text-gray-500'}`}>
-                Yearly
-                <span className="ml-2 inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
-                  Save 20%
-                </span>
-              </span>
-            </div>
-
             {/* Pricing Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {plans.map((plan) => (
                 <div
                   key={plan.name}
                   className={`relative rounded-2xl p-8 ${
                     plan.popular
-                      ? 'border-2 border-primary-600 shadow-xl'
-                      : 'border border-gray-200'
+                      ? 'border-2 border-primary-600 shadow-xl bg-gradient-to-br from-purple-50 to-white'
+                      : 'border border-gray-200 bg-white'
                   }`}
                 >
                   {plan.popular && (
@@ -170,27 +124,22 @@ export default function PricingPage() {
                   </div>
 
                   <div className="mb-6">
-                    {plan.price.monthly !== null ? (
+                    {plan.price !== null ? (
                       <>
                         <div className="flex items-baseline">
-                          <span className="text-4xl font-bold text-gray-900">
-                            ${isYearly ? plan.price.yearly : plan.price.monthly}
+                          <span className="text-5xl font-bold text-gray-900">
+                            ${plan.price}
                           </span>
-                          <span className="ml-2 text-gray-600">/listing/month</span>
+                          <span className="ml-2 text-gray-600">/month per listing</span>
                         </div>
                         {plan.minimumMonthly && (
                           <p className="text-sm text-gray-600 mt-2">
-                            Minimum ${plan.minimumMonthly}/month
-                          </p>
-                        )}
-                        {isYearly && plan.price.yearly > 0 && (
-                          <p className="text-sm text-green-600 mt-2">
-                            Billed ${plan.price.yearly * 12}/listing/year
+                            ${plan.minimumMonthly} minimum (2 listings)
                           </p>
                         )}
                       </>
                     ) : (
-                      <div className="text-4xl font-bold text-gray-900">Custom</div>
+                      <div className="text-4xl font-bold text-gray-900">Custom pricing</div>
                     )}
                   </div>
 
@@ -198,7 +147,7 @@ export default function PricingPage() {
                     {plan.features.map((feature, index) => (
                       <li key={index} className="flex items-start">
                         <svg
-                          className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5"
+                          className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -208,17 +157,19 @@ export default function PricingPage() {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <span className="text-gray-700 text-sm">{feature}</span>
+                        <span className={`${feature.startsWith('Everything') ? 'font-semibold' : ''} text-gray-700`}>
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
 
                   <Link
                     href={plan.ctaLink}
-                    className={`block text-center px-6 py-3 rounded-lg font-semibold transition-colors ${
+                    className={`block text-center px-6 py-4 rounded-lg font-semibold transition-all ${
                       plan.popular
-                        ? 'bg-primary-600 text-white hover:bg-primary-700'
-                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                        ? 'bg-primary-600 text-white hover:bg-primary-700 hover:shadow-lg transform hover:-translate-y-0.5'
+                        : 'bg-gray-900 text-white hover:bg-gray-800'
                     }`}
                     target="_blank"
                   >
@@ -227,67 +178,71 @@ export default function PricingPage() {
                 </div>
               ))}
             </div>
+
+            {/* Trust Badges */}
+            <div className="mt-12 text-center">
+              <p className="text-sm text-gray-600 mb-4">Trusted by 2000+ hosts managing 10,000+ properties</p>
+              <div className="flex flex-wrap justify-center items-center gap-8">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-gray-700">14-day free trial</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-gray-700">No credit card required</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-gray-700">Cancel anytime</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Feature Comparison */}
+        {/* What's Included Section */}
         <section className="py-16 bg-gray-50">
           <div className="max-width-container section-padding">
             <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-              Compare Features
+              Everything You Need, Nothing You Don't
             </h2>
 
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-4 px-4 font-semibold text-gray-900">Features</th>
-                    <th className="text-center py-4 px-4 font-semibold text-gray-900">Free</th>
-                    <th className="text-center py-4 px-4 font-semibold text-gray-900">Plus</th>
-                    <th className="text-center py-4 px-4 font-semibold text-gray-900">
-                      <span className="text-primary-600">Pro</span>
-                    </th>
-                    <th className="text-center py-4 px-4 font-semibold text-gray-900">Enterprise</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-4 px-4 font-medium text-gray-900">AI Messaging</td>
-                    <td className="text-center py-4 px-4 text-gray-600">10/month</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Unlimited</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Unlimited</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Unlimited</td>
-                  </tr>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-4 px-4 font-medium text-gray-900">AI Autopilot</td>
-                    <td className="text-center py-4 px-4">-</td>
-                    <td className="text-center py-4 px-4">-</td>
-                    <td className="text-center py-4 px-4">✓</td>
-                    <td className="text-center py-4 px-4">✓</td>
-                  </tr>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-4 px-4 font-medium text-gray-900">Team Members</td>
-                    <td className="text-center py-4 px-4 text-gray-600">1</td>
-                    <td className="text-center py-4 px-4 text-gray-600">3</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Unlimited</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Unlimited</td>
-                  </tr>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-4 px-4 font-medium text-gray-900">Priority Support</td>
-                    <td className="text-center py-4 px-4">-</td>
-                    <td className="text-center py-4 px-4">-</td>
-                    <td className="text-center py-4 px-4">✓</td>
-                    <td className="text-center py-4 px-4">✓</td>
-                  </tr>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-4 px-4 font-medium text-gray-900">Guidebooks</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Basic</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Advanced</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Advanced + Upsells</td>
-                    <td className="text-center py-4 px-4 text-gray-600">Custom</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">AI Messaging</h3>
+                <p className="text-gray-600">Unlimited AI-powered guest messages with 80%+ automation rate</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Task Management</h3>
+                <p className="text-gray-600">Auto-generate maintenance tasks from messages and reviews</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Revenue Optimization</h3>
+                <p className="text-gray-600">Upsells, dynamic pricing, and gap night filling</p>
+              </div>
             </div>
           </div>
         </section>
@@ -301,7 +256,7 @@ export default function PricingPage() {
 
             <div className="max-w-3xl mx-auto space-y-6">
               {faqs.map((faq, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-6">
+                <div key={index} className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">
                     {faq.question}
                   </h3>
@@ -314,29 +269,53 @@ export default function PricingPage() {
           </div>
         </section>
 
+        {/* Testimonial Section */}
+        <section className="py-16 bg-purple-50">
+          <div className="max-width-container section-padding">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="mb-8">
+                <div className="flex justify-center mb-4">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg key={star} className="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <blockquote className="text-xl text-gray-700 italic mb-4">
+                  "ProhostAI has transformed how we manage our properties. We've reduced response time by 90% and
+                  our guests love the instant, helpful replies. The ROI was clear within the first week."
+                </blockquote>
+                <cite className="text-gray-600 not-italic">
+                  - Sarah M., Managing 15 properties on Airbnb
+                </cite>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-br from-primary-600 to-purple-700">
           <div className="max-width-container section-padding text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Start your 14-day free trial
+              Start your 14-day free trial today
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              No credit card required. Cancel anytime.
+              Join 2000+ hosts who are saving 10+ hours per week with ProhostAI
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="https://app.prohostai.com/signup"
                 target="_blank"
-                className="px-8 py-4 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="px-8 py-4 bg-white text-primary-600 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:-translate-y-0.5 hover:shadow-lg"
               >
-                Start Free Trial
+                Start Free Trial - No Card Required
               </Link>
               <Link
                 href="https://cal.com/billu/prohostdemo"
                 target="_blank"
                 className="px-8 py-4 bg-transparent text-white border-2 border-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                Schedule Demo
+                Book a Demo
               </Link>
             </div>
           </div>
