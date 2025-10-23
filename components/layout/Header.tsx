@@ -78,23 +78,38 @@ export default function Header() {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const [shouldTransition, setShouldTransition] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   const updateIndicator = (element: HTMLElement | null) => {
     if (!element || !navRef.current) {
-      setIndicatorStyle({ left: 0, width: 0, opacity: 0 });
+      // Fade out at current position
+      setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+      setTimeout(() => setShouldTransition(false), 300);
       return;
     }
 
     const navRect = navRef.current.getBoundingClientRect();
     const itemRect = element.getBoundingClientRect();
 
-    setIndicatorStyle({
+    const newStyle = {
       left: itemRect.left - navRect.left,
       width: itemRect.width,
       opacity: 1,
-    });
+    };
+
+    // If currently invisible, appear instantly at new position
+    if (indicatorStyle.opacity === 0) {
+      setShouldTransition(false);
+      setIndicatorStyle(newStyle);
+      // Enable transition for next move
+      setTimeout(() => setShouldTransition(true), 50);
+    } else {
+      // Already visible, slide to new position
+      setShouldTransition(true);
+      setIndicatorStyle(newStyle);
+    }
   };
 
   return (
@@ -116,7 +131,9 @@ export default function Header() {
             <div ref={navRef} className="hidden lg:flex lg:gap-x-4 lg:items-center relative">
               {/* Sliding hover indicator */}
               <div
-                className="absolute bg-gray-100 rounded-full h-[33px] pointer-events-none transition-all duration-300 ease-out"
+                className={`absolute bg-gray-100 rounded-full h-[33px] pointer-events-none ${
+                  shouldTransition ? 'transition-all duration-300 ease-out' : 'transition-opacity duration-200'
+                }`}
                 style={{
                   left: `${indicatorStyle.left}px`,
                   width: `${indicatorStyle.width}px`,
@@ -135,7 +152,7 @@ export default function Header() {
                 }}
                 onMouseLeave={() => {
                   setFeaturesOpen(false);
-                  setIndicatorStyle({ left: 0, width: 0, opacity: 0 });
+                  updateIndicator(null);
                 }}
               >
                 <button
@@ -187,7 +204,7 @@ export default function Header() {
                   }`}
                   style={{ lineHeight: '21px' }}
                   onMouseEnter={(e) => updateIndicator(e.currentTarget)}
-                  onMouseLeave={() => setIndicatorStyle({ left: 0, width: 0, opacity: 0 })}
+                  onMouseLeave={() => updateIndicator(null)}
                 >
                   {item.name}
                 </Link>
@@ -202,7 +219,7 @@ export default function Header() {
                 }}
                 onMouseLeave={() => {
                   setResourcesOpen(false);
-                  setIndicatorStyle({ left: 0, width: 0, opacity: 0 });
+                  updateIndicator(null);
                 }}
               >
                 <button
