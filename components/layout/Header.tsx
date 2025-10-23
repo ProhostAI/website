@@ -118,22 +118,24 @@ export default function Header() {
                 </button>
 
                 {featuresOpen && (
-                  <div className="absolute left-0 z-10 mt-3 w-64 origin-top-left rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                    <div className="py-1">
-                      {featuresMenu.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="group block px-4 py-3 hover:bg-gray-50 transition-colors"
-                        >
-                          <p className="text-sm font-medium text-gray-900 group-hover:text-primary-600">
-                            {item.name}
-                          </p>
-                          <p className="text-xs text-gray-500 mt-1">
-                            {item.description}
-                          </p>
-                        </Link>
-                      ))}
+                  <div className="absolute left-0 z-10 pt-3 w-64">
+                    <div className="rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                      <div className="py-1">
+                        {featuresMenu.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="group block px-4 py-3 hover:bg-gray-50 transition-colors"
+                          >
+                            <p className="text-sm font-medium text-gray-900 group-hover:text-primary-600">
+                              {item.name}
+                            </p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              {item.description}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}
@@ -175,24 +177,26 @@ export default function Header() {
                 </button>
 
                 {resourcesOpen && (
-                  <div className="absolute right-0 z-10 mt-3 w-64 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                    <div className="py-1">
-                      {resourcesMenu.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          target={item.external ? "_blank" : undefined}
-                          rel={item.external ? "noopener noreferrer" : undefined}
-                          className="group block px-4 py-3 hover:bg-gray-50 transition-colors"
-                        >
-                          <p className="text-sm font-medium text-gray-900 group-hover:text-primary-600">
-                            {item.name}
-                          </p>
-                          <p className="text-xs text-gray-500 mt-1">
-                            {item.description}
-                          </p>
-                        </Link>
-                      ))}
+                  <div className="absolute right-0 z-10 pt-3 w-64">
+                    <div className="rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                      <div className="py-1">
+                        {resourcesMenu.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                            className="group block px-4 py-3 hover:bg-gray-50 transition-colors"
+                          >
+                            <p className="text-sm font-medium text-gray-900 group-hover:text-primary-600">
+                              {item.name}
+                            </p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              {item.description}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}
