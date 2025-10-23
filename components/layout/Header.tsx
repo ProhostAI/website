@@ -148,29 +148,31 @@ export default function Header() {
           </div>
 
           {/* CTA Buttons - Right Side */}
-          <div className="hidden lg:flex lg:items-center lg:gap-x-3">
+          <div className="hidden lg:flex lg:items-center lg:gap-x-[30px]">
             <Link
               href="https://app.prohost.ai/signin"
-              className="px-3 py-2 text-sm font-medium text-black hover:text-primary-600 transition-colors whitespace-nowrap"
+              className="text-sm font-medium text-black hover:text-primary-600 transition-colors whitespace-nowrap"
               style={{ lineHeight: '21px' }}
             >
               Log In
             </Link>
-            <Link
-              href="https://cal.com/billu/prohostdemo"
-              target="_blank"
-              className="rounded-full border border-gray-300 px-5 py-2 text-sm font-medium text-black hover:bg-gray-50 transition-colors whitespace-nowrap"
-              style={{ lineHeight: '21px' }}
-            >
-              Book a demo
-            </Link>
-            <Link
-              href="https://app.prohost.ai/signup"
-              className="rounded-full bg-gray-900 px-5 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors whitespace-nowrap"
-              style={{ lineHeight: '21px' }}
-            >
-              Sign up now
-            </Link>
+            <div className="flex items-center gap-x-3">
+              <Link
+                href="https://cal.com/billu/prohostdemo"
+                target="_blank"
+                className="rounded-full border border-black px-5 py-2 text-sm font-medium text-black hover:bg-gray-50 transition-colors whitespace-nowrap"
+                style={{ lineHeight: '21px' }}
+              >
+                Book a demo
+              </Link>
+              <Link
+                href="https://app.prohost.ai/signup"
+                className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors whitespace-nowrap"
+                style={{ lineHeight: '21px' }}
+              >
+                Sign up now
+              </Link>
+            </div>
           </div>
         </div>
 
