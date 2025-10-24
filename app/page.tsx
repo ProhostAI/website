@@ -172,27 +172,47 @@ export default function HomePage() {
           <div className="w-full">
             {/* Infinite Logo Marquee */}
             <div className="relative">
-              <div className="flex items-center gap-16 animate-marquee">
+              <div className="flex items-center animate-marquee" style={{ gap: '160px' }}>
                 {/* First set */}
-                <p className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Backed by top investors</p>
+                <p className="whitespace-nowrap flex-shrink-0" style={{
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  fontWeight: 500,
+                  color: '#000'
+                }}>Backed by:</p>
                 <img src="/images/yc.png" alt="Y Combinator" className="h-10 object-contain opacity-60 flex-shrink-0" />
                 <img src="/images/pear.png" alt="Pear VC" className="h-10 object-contain opacity-60 flex-shrink-0" />
                 <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Amino Capital</span>
                 <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Data Tech Fund</span>
                 <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Pioneer</span>
-                <p className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Founded by team from</p>
+                <p className="whitespace-nowrap flex-shrink-0" style={{
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  fontWeight: 500,
+                  color: '#000'
+                }}>Team from:</p>
                 <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 flex-shrink-0" />
                 <img src="/images/dropbox.png" alt="Dropbox" className="h-8 object-contain opacity-60 flex-shrink-0" />
                 <img src="/images/harvard.png" alt="Harvard" className="h-10 object-contain opacity-60 flex-shrink-0" />
 
                 {/* Duplicate set for seamless loop */}
-                <p className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Backed by top investors</p>
+                <p className="whitespace-nowrap flex-shrink-0" style={{
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  fontWeight: 500,
+                  color: '#000'
+                }}>Backed by:</p>
                 <img src="/images/yc.png" alt="Y Combinator" className="h-10 object-contain opacity-60 flex-shrink-0" />
                 <img src="/images/pear.png" alt="Pear VC" className="h-10 object-contain opacity-60 flex-shrink-0" />
                 <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Amino Capital</span>
                 <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Data Tech Fund</span>
                 <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Pioneer</span>
-                <p className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Founded by team from</p>
+                <p className="whitespace-nowrap flex-shrink-0" style={{
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  fontWeight: 500,
+                  color: '#000'
+                }}>Team from:</p>
                 <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 flex-shrink-0" />
                 <img src="/images/dropbox.png" alt="Dropbox" className="h-8 object-contain opacity-60 flex-shrink-0" />
                 <img src="/images/harvard.png" alt="Harvard" className="h-10 object-contain opacity-60 flex-shrink-0" />
