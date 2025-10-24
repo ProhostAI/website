@@ -151,8 +151,17 @@ export default function HomePage() {
                 justifyContent: 'center',
               }}
             >
-              <div style={{ width: isMobile ? '80%' : '60%', height: isMobile ? '50%' : '60%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <RiveComponent style={{ width: '100%', height: '100%' }} />
+              <div style={{
+                width: isMobile ? '80%' : '60%',
+                height: isMobile ? '50%' : '60%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative'
+              }}>
+                <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
+                  <RiveComponent style={{ width: '100%', height: '100%' }} />
+                </div>
               </div>
             </div>
           </div>
