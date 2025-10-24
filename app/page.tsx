@@ -320,49 +320,38 @@ export default function HomePage() {
         </section>
 
         {/* AI Autopilot Section */}
-        <section className="py-24 bg-white">
-          <div className="max-width-container section-padding">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                  AI Autopilot
+        <section className="section-padding bg-white" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+          <div className="mx-auto px-4" style={{ maxWidth: '1320px' }}>
+            <div>
+              <p className="mb-3" style={{
+                fontSize: '16px',
+                lineHeight: '28px',
+                fontWeight: 600,
+                color: '#53b1fd'
+              }}>
+                AI Autopilot
+              </p>
+              <h2 className="font-bold text-black mb-10" style={{
+                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                lineHeight: 'clamp(2.5rem, 6vw, 4.5rem)',
+                fontWeight: 700
+              }}>
+                Guest messages on Autopilot
+              </h2>
+              <p style={{
+                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                lineHeight: 'clamp(1.5rem, 2.5vw, 1.875rem)',
+                fontWeight: 400,
+                color: '#667085',
+                maxWidth: '800px',
+                marginBottom: '60px'
+              }}>
+                Turn on Autopilot to let AI handle guest messages for you. Autopilot works 24/7 and constantly improves. Autopilot smartly escalates questions to you as needed.
+              </p>
+              <div className="flex justify-center">
+                <div style={{ backgroundColor: '#F9FAFB', borderRadius: '56px', paddingTop: '60px', paddingLeft: '60px', paddingRight: '60px', paddingBottom: '0', maxWidth: '100%', overflow: 'hidden' }}>
+                  <img src="/images/autopilot-final_1.avif" alt="AI Autopilot Feature" className="w-full" style={{ borderTopLeftRadius: '24px', borderTopRightRadius: '24px' }} />
                 </div>
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  Guest messages on Autopilot
-                </h2>
-                <p className="mt-4 text-lg text-gray-600">
-                  Let ProhostAI handle your guest communications 24/7. Our AI understands context,
-                  maintains your brand voice, and only escalates when truly needed.
-                </p>
-                <ul className="mt-8 space-y-4">
-                  <li className="flex items-start gap-3">
-                    <svg className="h-6 w-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="font-semibold">24/7 Coverage:</span> Never miss a message, even at 3 AM
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="h-6 w-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="font-semibold">Smart Escalation:</span> AI knows when to involve you
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="h-6 w-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="font-semibold">80%+ Automation:</span> Most messages handled without you
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <img src="/images/autopilot-final_1.avif" alt="AI Autopilot Feature" className="rounded-2xl shadow-2xl" />
               </div>
             </div>
           </div>
@@ -399,55 +388,6 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* AI Autopilot Section */}
-        <section className="py-24 bg-white">
-          <div className="max-width-container section-padding">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                  AI Autopilot
-                </div>
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  Guest messages on Autopilot
-                </h2>
-                <p className="mt-4 text-lg text-gray-600">
-                  Let ProhostAI handle your guest communications 24/7. Our AI understands context,
-                  maintains your brand voice, and only escalates when truly needed.
-                </p>
-                <ul className="mt-8 space-y-4">
-                  <li className="flex items-start gap-3">
-                    <svg className="h-6 w-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="font-semibold">24/7 Coverage:</span> Never miss a message, even at 3 AM
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="h-6 w-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="font-semibold">Smart Escalation:</span> AI knows when to involve you
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="h-6 w-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="font-semibold">80%+ Automation:</span> Most messages handled without you
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <img src="/images/autopilot-final_1.avif" alt="AI Autopilot Feature" className="rounded-2xl shadow-2xl" />
-              </div>
             </div>
           </div>
         </section>
