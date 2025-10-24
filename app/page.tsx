@@ -38,19 +38,19 @@ export default function HomePage() {
                 }}>AI assistant</span> for<br />
                 vacation rental hosts
               </h1>
-              <div className="mt-12 flex items-center justify-center gap-x-3">
+              <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
                 <Link
                   href="https://app.prohost.ai/signup"
                   target="_blank"
-                  className="rounded-full bg-black px-8 py-[18px] text-[20px] leading-[28px] font-semibold text-white hover:bg-gray-800 transition-all"
-                  style={{ paddingLeft: '32px', paddingRight: '32px' }}
+                  className="w-full sm:w-auto rounded-full bg-black py-[18px] text-base sm:text-[20px] leading-6 sm:leading-[28px] font-semibold text-white hover:bg-gray-800 transition-all text-center"
+                  style={{ paddingLeft: 'clamp(24px, 5vw, 32px)', paddingRight: 'clamp(24px, 5vw, 32px)' }}
                 >
                   Try 14 days FREE
                 </Link>
                 <Link
                   href="/downloads"
-                  className="rounded-full border border-black px-8 py-[18px] text-[20px] leading-[28px] font-semibold text-black hover:bg-gray-50 transition-all flex items-center gap-2"
-                  style={{ paddingLeft: '32px', paddingRight: '32px' }}
+                  className="w-full sm:w-auto rounded-full border border-black py-[18px] text-base sm:text-[20px] leading-6 sm:leading-[28px] font-semibold text-black hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+                  style={{ paddingLeft: 'clamp(24px, 5vw, 32px)', paddingRight: 'clamp(24px, 5vw, 32px)' }}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
