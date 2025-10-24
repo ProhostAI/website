@@ -28,17 +28,17 @@ export default function HomePage() {
                 New feature: AI Autopilot
               </div>
 
-              <h1 className="text-[clamp(2.5rem,8vw,5.75rem)] font-bold tracking-tight text-gray-900 leading-[clamp(2.5rem,8vw,5.5rem)]">
+              <h1 className="text-[clamp(2.5rem,8vw,5.75rem)] font-bold tracking-tight text-black leading-[clamp(2.5rem,8vw,5.5rem)]">
                 All-in-One<br />
-                AI assistant for<br />
-                <span className="text-primary-600">vacation rental hosts</span>
+                <span style={{
+                  backgroundImage: 'linear-gradient(to right, color(display-p3 0.376 0.733 0.961), color(display-p3 0.953 0.553 0.937))',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  color: 'transparent'
+                }}>AI assistant</span> for<br />
+                vacation rental hosts
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
-                ProhostAI – the all-in-one AI assistant that automates guest messaging, maintenance,
-                cleaning & upsells so vacation rental hosts can scale stress-free. Available for hosts
-                on Airbnb, Hostaway and Guesty.
-              </p>
-              <div className="mt-10 flex items-center justify-center gap-x-3">
+              <div className="mt-12 flex items-center justify-center gap-x-3">
                 <Link
                   href="https://app.prohost.ai/signup"
                   target="_blank"
