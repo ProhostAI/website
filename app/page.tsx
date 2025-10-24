@@ -283,13 +283,13 @@ export default function HomePage() {
                   src="/images/integrations-logos.avif"
                   alt="Integrations"
                   className="hidden md:block object-contain"
-                  style={{ width: '80%' }}
+                  style={{ maxWidth: '720px', width: '100%' }}
                 />
                 <img
                   src="/images/integrations-logos-mobile.avif"
                   alt="Integrations"
                   className="md:hidden object-contain"
-                  style={{ width: '80%' }}
+                  style={{ maxWidth: '280px', width: '100%' }}
                 />
               </div>
             </div>
