@@ -559,39 +559,103 @@ export default function HomePage() {
               </div>
 
               {/* Tabs */}
-              <div className="flex justify-center mt-8">
-                <div className="inline-flex rounded-lg border border-gray-200 p-1 bg-gray-50">
+              <div className="relative" style={{ marginTop: 'clamp(40px, 5vw, 60px)', width: '100%' }}>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative">
                   <button
                     onClick={() => setActiveCalendarTab('all-in-one')}
-                    className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                      activeCalendarTab === 'all-in-one'
-                        ? 'bg-white text-gray-900 shadow-sm'
-                        : 'text-gray-600 hover:text-gray-900'
-                    }`}
+                    className="transition-all relative text-left"
+                    style={{
+                      paddingBottom: 'clamp(24px, 3vw, 32px)'
+                    }}
                   >
-                    All-in-one view
+                    <div style={{
+                      fontSize: 'clamp(20px, 3vw, 28px)',
+                      lineHeight: 'clamp(24px, 3.5vw, 31px)',
+                      fontWeight: 600,
+                      color: activeCalendarTab === 'all-in-one' ? '#000' : '#667085',
+                      marginBottom: 'clamp(16px, 3vw, 32px)'
+                    }}>
+                      All-in-one view
+                    </div>
+                    <div style={{
+                      fontSize: 'clamp(16px, 2vw, 18px)',
+                      lineHeight: 'clamp(22px, 2.5vw, 27px)',
+                      fontWeight: 400,
+                      color: '#667085'
+                    }}>
+                      See bookings, blocked dates, team tasks,and availability across all your listings in a single unified view.
+                    </div>
                   </button>
                   <button
                     onClick={() => setActiveCalendarTab('focus')}
-                    className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                      activeCalendarTab === 'focus'
-                        ? 'bg-white text-gray-900 shadow-sm'
-                        : 'text-gray-600 hover:text-gray-900'
-                    }`}
+                    className="transition-all relative text-left"
+                    style={{
+                      paddingBottom: 'clamp(24px, 3vw, 32px)'
+                    }}
                   >
-                    Focus on one listing
+                    <div style={{
+                      fontSize: 'clamp(20px, 3vw, 28px)',
+                      lineHeight: 'clamp(24px, 3.5vw, 31px)',
+                      fontWeight: 600,
+                      color: activeCalendarTab === 'focus' ? '#000' : '#667085',
+                      marginBottom: 'clamp(16px, 3vw, 32px)'
+                    }}>
+                      Focus on one listing
+                    </div>
+                    <div style={{
+                      fontSize: 'clamp(16px, 2vw, 18px)',
+                      lineHeight: 'clamp(22px, 2.5vw, 27px)',
+                      fontWeight: 400,
+                      color: '#667085'
+                    }}>
+                      Easily switch to a single-property view to manage just one calendar at a time—ideal for quick edits and detailed planning.
+                    </div>
                   </button>
                   <button
                     onClick={() => setActiveCalendarTab('mobile')}
-                    className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                      activeCalendarTab === 'mobile'
-                        ? 'bg-white text-gray-900 shadow-sm'
-                        : 'text-gray-600 hover:text-gray-900'
-                    }`}
+                    className="transition-all relative text-left"
+                    style={{
+                      paddingBottom: 'clamp(24px, 3vw, 32px)'
+                    }}
                   >
-                    Mobile app
+                    <div style={{
+                      fontSize: 'clamp(20px, 3vw, 28px)',
+                      lineHeight: 'clamp(24px, 3.5vw, 31px)',
+                      fontWeight: 600,
+                      color: activeCalendarTab === 'mobile' ? '#000' : '#667085',
+                      marginBottom: 'clamp(16px, 3vw, 32px)'
+                    }}>
+                      Mobile app
+                    </div>
+                    <div style={{
+                      fontSize: 'clamp(16px, 2vw, 18px)',
+                      lineHeight: 'clamp(22px, 2.5vw, 27px)',
+                      fontWeight: 400,
+                      color: '#667085'
+                    }}>
+                      Access the multicalendar and single calendar views on the ProhostAI mobile app.‍
+                    </div>
                   </button>
                 </div>
+                {/* Bottom border line */}
+                <div className="hidden md:block" style={{
+                  position: 'absolute',
+                  bottom: '0',
+                  left: '0',
+                  right: '0',
+                  height: '1px',
+                  backgroundColor: '#E5E7EB'
+                }} />
+                {/* Active tab indicator */}
+                <div className="hidden md:block" style={{
+                  position: 'absolute',
+                  bottom: '0',
+                  height: '2px',
+                  backgroundColor: '#000',
+                  transition: 'left 0.3s ease, width 0.3s ease',
+                  left: activeCalendarTab === 'all-in-one' ? '0%' : activeCalendarTab === 'focus' ? 'calc(33.33% + 16px)' : 'calc(66.66% + 32px)',
+                  width: 'calc(33.33% - 10px)'
+                }} />
               </div>
             </div>
           </div>
