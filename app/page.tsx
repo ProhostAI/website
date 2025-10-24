@@ -372,6 +372,96 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Upsells Section */}
+        <section className="section-padding bg-white" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+          <div className="mx-auto px-4" style={{ maxWidth: '1320px' }}>
+            <div>
+              <p className="mb-3" style={{
+                fontSize: '16px',
+                lineHeight: '28px',
+                fontWeight: 600,
+                color: 'color(display-p3 0.278 0.804 0.537)'
+              }}>
+                Upsells
+              </p>
+              <h2 className="font-bold text-black mb-10" style={{
+                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                lineHeight: 'clamp(2.5rem, 6vw, 4.5rem)',
+                fontWeight: 700
+              }}>
+                <span className="hidden md:inline">Turn every gap night into a <span style={{ display: 'inline-block' }}>revenue opportunity</span></span>
+                <span className="md:hidden">Turn every gap night into <span style={{ display: 'inline-block' }}>a revenue</span> opportunity</span>
+              </h2>
+              <p style={{
+                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                lineHeight: 'clamp(1.5rem, 2.5vw, 1.875rem)',
+                fontWeight: 400,
+                color: '#667085',
+                maxWidth: '800px',
+                marginBottom: '60px'
+              }}>
+                Automatically detect gap nights and send upsell offers to guests to turn empty nights into additional revenue. Customize upsells rules to only offer them on orphan nights with no turnovers.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '32px' }}>
+                <div style={{ backgroundColor: '#EDF0FE', borderRadius: '56px', overflow: 'hidden' }}>
+                  <img src="/images/upsell-tracker_1.avif" alt="Upsell Tracker" className="w-full" style={{ display: 'block' }} />
+                  <div style={{
+                    paddingLeft: 'clamp(24px, 5vw, 64px)',
+                    paddingRight: 'clamp(24px, 5vw, 64px)',
+                    paddingBottom: 'clamp(32px, 5vw, 64px)',
+                    paddingTop: 'clamp(32px, 4vw, 48px)'
+                  }}>
+                    <h3 style={{
+                      fontSize: 'clamp(28px, 4vw, 35px)',
+                      lineHeight: 'clamp(36px, 5vw, 45px)',
+                      fontWeight: 600,
+                      color: '#000',
+                      marginBottom: '24px'
+                    }}>
+                      Upsell tracker
+                    </h3>
+                    <p style={{
+                      fontSize: 'clamp(16px, 2vw, 18px)',
+                      lineHeight: 'clamp(24px, 2.5vw, 27px)',
+                      fontWeight: 400,
+                      color: '#667085'
+                    }}>
+                      AI automatically detects gap nights based on your rules and sends offers to guests.
+                    </p>
+                  </div>
+                </div>
+                <div style={{ backgroundColor: '#EEF5FC', borderRadius: '56px', overflow: 'hidden' }}>
+                  <img src="/images/effective-upsells.avif" alt="Effective Upsells" className="w-full" style={{ display: 'block' }} />
+                  <div style={{
+                    paddingLeft: 'clamp(24px, 5vw, 64px)',
+                    paddingRight: 'clamp(24px, 5vw, 64px)',
+                    paddingBottom: 'clamp(32px, 5vw, 64px)',
+                    paddingTop: 'clamp(32px, 4vw, 48px)'
+                  }}>
+                    <h3 style={{
+                      fontSize: 'clamp(28px, 4vw, 35px)',
+                      lineHeight: 'clamp(36px, 5vw, 45px)',
+                      fontWeight: 600,
+                      color: '#000',
+                      marginBottom: '24px'
+                    }}>
+                      Effective upsells
+                    </h3>
+                    <p style={{
+                      fontSize: 'clamp(16px, 2vw, 18px)',
+                      lineHeight: 'clamp(24px, 2.5vw, 27px)',
+                      fontWeight: 400,
+                      color: '#667085'
+                    }}>
+                      Offer late checkout, gear rentals, or local experiences via automated messages.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Interactive Cleanings Demo Section */}
         <section className="py-24 bg-gradient-to-b from-green-50 to-white">
           <div className="max-width-container section-padding">
@@ -403,42 +493,6 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Upsells Section */}
-        <section className="py-24 bg-gray-50">
-          <div className="max-width-container section-padding">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <div className="grid grid-cols-2 gap-4">
-                  <img src="/images/upsell-tracker_1.avif" alt="Upsell Tracker" className="rounded-xl shadow-lg" />
-                  <img src="/images/effective-upsells.avif" alt="Effective Upsells" className="rounded-xl shadow-lg" />
-                </div>
-              </div>
-              <div className="order-1 lg:order-2">
-                <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                  Upsells
-                </div>
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  Turn every gap night into a revenue opportunity
-                </h2>
-                <p className="mt-4 text-lg text-gray-600">
-                  Automatically identify and capitalize on upsell opportunities. From early check-ins
-                  to late checkouts, maximize revenue from every booking.
-                </p>
-                <div className="mt-8 grid grid-cols-2 gap-4">
-                  <div>
-                    <div className="text-3xl font-bold text-green-600">+23%</div>
-                    <p className="text-sm text-gray-600">Average revenue increase</p>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-green-600">$450</div>
-                    <p className="text-sm text-gray-600">Avg monthly extra revenue</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
