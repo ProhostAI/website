@@ -560,7 +560,7 @@ export default function HomePage() {
 
               {/* Tabs */}
               <div className="relative" style={{ marginTop: 'clamp(40px, 5vw, 60px)', width: '100%' }}>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative items-start">
                   <button
                     onClick={() => setActiveCalendarTab('all-in-one')}
                     className="transition-all relative text-left"
