@@ -242,7 +242,7 @@ export default function HomePage() {
         </section>
 
         {/* Integrations Section */}
-        <section className="section-padding bg-white" style={{ paddingTop: '0px', paddingBottom: '140px' }}>
+        <section className="section-padding bg-white" style={{ paddingTop: '0px', paddingBottom: '80px' }}>
           <div className="mx-auto px-4" style={{ maxWidth: '1320px' }}>
             <div style={{
               backgroundColor: '#f9fafb',
@@ -297,31 +297,25 @@ export default function HomePage() {
         </section>
 
         {/* AI Features Stack Section */}
-        <section className="py-24 bg-white">
-          <div className="max-width-container section-padding">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                AI Features
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Everything you need to succeed
-              </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Powerful AI features designed for modern property managers
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
+        <section className="bg-white" style={{ paddingTop: '80px', paddingBottom: '140px' }}>
+          <div className="mx-auto px-4" style={{ maxWidth: '1320px' }}>
+            <div className="flex flex-col" style={{ gap: '80px' }}>
               {aiFeatures.map((feature) => (
-                <div key={feature.title} className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all p-8 border border-gray-100">
-                  <div className="flex items-start gap-4">
-                    <div className={`flex items-center justify-center h-12 w-12 rounded-xl ${feature.bgColor} ${feature.iconColor} flex-shrink-0`}>
-                      <img src={feature.icon} alt={feature.title} className="h-6 w-6" />
+                <div key={feature.title} className="flex flex-col lg:grid gap-0 overflow-hidden" style={{ gridTemplateColumns: '40% 60%', backgroundColor: '#F9FAFB', borderRadius: '56px', height: 'auto', minHeight: '400px' }}>
+                  {/* Text Section */}
+                  <div className="flex flex-col justify-center p-8 lg:p-12 lg:h-[655px]" style={{ paddingLeft: 'clamp(24px, 5vw, 120px)' }}>
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className={`flex items-center justify-center h-12 w-12 rounded-xl ${feature.bgColor} ${feature.iconColor} flex-shrink-0`}>
+                        <img src={feature.icon} alt={feature.title} className="h-6 w-6" />
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
-                      <p className="mt-2 text-gray-600">{feature.description}</p>
-                    </div>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
+                    <p className="text-lg text-gray-600">{feature.description}</p>
+                  </div>
+
+                  {/* Image Section */}
+                  <div className="flex items-end lg:items-center justify-center px-8 lg:p-0 lg:h-[655px]">
+                    <img src={feature.image} alt={feature.title} className="w-full h-auto lg:h-full lg:w-full object-contain lg:object-cover rounded-2xl lg:rounded-none" />
                   </div>
                 </div>
               ))}
@@ -618,6 +612,7 @@ const aiFeatures = [
     title: 'AI Messaging',
     description: 'Instant AI generated suggested replies to guest messages based on your listing information, messaging history and local data.',
     icon: '/images/ai-messaging-icon.svg',
+    image: '/images/ai-messaging2_1.avif',
     bgColor: 'bg-purple-100',
     iconColor: 'text-purple-600',
   },
@@ -625,6 +620,7 @@ const aiFeatures = [
     title: 'AI Tasks',
     description: 'Automatically generates maintenance tasks from guest messages and reviews, with auto-assignment and status tracking.',
     icon: '/images/ai-tasks.svg',
+    image: '/images/ai-tasks_1.webp',
     bgColor: 'bg-blue-100',
     iconColor: 'text-blue-600',
   },
@@ -632,6 +628,7 @@ const aiFeatures = [
     title: 'Cleanings',
     description: 'Automatic scheduling of turnover cleanings, auto-assignment to cleaners, timestamped photos, and checklist creation.',
     icon: '/images/icon_cleanings.svg',
+    image: '/images/cleanings_1.avif',
     bgColor: 'bg-green-100',
     iconColor: 'text-green-600',
   },
@@ -639,6 +636,7 @@ const aiFeatures = [
     title: 'Ask AI',
     description: 'Your always-on hosting assistant — ready to answer questions, solve problems, and help you stay ahead.',
     icon: '/images/ask-ai-icon.svg',
+    image: '/images/ask-ai.webp',
     bgColor: 'bg-yellow-100',
     iconColor: 'text-yellow-600',
   },
@@ -646,6 +644,7 @@ const aiFeatures = [
     title: 'AI Reviews',
     description: 'Automatically detects actionable tasks from reviews and can write personalized guest reviews using AI.',
     icon: '/images/ai-review-icon.svg',
+    image: '/images/ai-reviews_1.avif',
     bgColor: 'bg-red-100',
     iconColor: 'text-red-600',
   },
@@ -653,6 +652,7 @@ const aiFeatures = [
     title: 'AI Guidebooks',
     description: 'Welcome guests with digital guidebooks tailored to each property—complete with check-in info, house rules, local tips, and more.',
     icon: '/images/ai-guidebook-icon.svg',
+    image: '/images/ai-guidebooks_1.avif',
     bgColor: 'bg-indigo-100',
     iconColor: 'text-indigo-600',
   },
@@ -660,6 +660,7 @@ const aiFeatures = [
     title: 'AI Memory',
     description: 'Your AI assistant continuously learns from every message and becomes smarter over time.',
     icon: '/images/ai-memory-icon.svg',
+    image: '/images/ai-memory_1.avif',
     bgColor: 'bg-pink-100',
     iconColor: 'text-pink-600',
   },
@@ -667,6 +668,7 @@ const aiFeatures = [
     title: 'AI Autopilot',
     description: 'Set it and forget it — AI handles guest messages 24/7 with smart escalation when needed.',
     icon: '/images/shape_ai.svg',
+    image: '/images/autopilot-final_1.avif',
     bgColor: 'bg-blue-100',
     iconColor: 'text-blue-600',
   },
