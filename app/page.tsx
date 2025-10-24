@@ -125,12 +125,13 @@ export default function HomePage() {
         {/* Hero Visual Section */}
         <section
           ref={heroVisualRef}
-          className="relative bg-white -mt-6 sm:-mt-8 md:-mt-12 lg:-mt-16"
+          className="relative bg-white -mt-6 sm:-mt-8 md:-mt-12 lg:-mt-16 z-10"
           style={{
-            height: isMobile ? '70vh' : '100vh',
+            height: isMobile ? 'calc(70vh + 64px)' : 'calc(100vh + 64px)',
+            paddingBottom: '64px',
           }}
         >
-          <div className="sticky top-0 w-full flex items-center justify-center" style={{ height: isMobile ? '70vh' : '100vh' }}>
+          <div className="sticky top-0 w-full flex items-center justify-center z-10" style={{ height: isMobile ? '70vh' : '100vh' }}>
             <div
               className="flex items-center justify-center overflow-hidden"
               style={{
@@ -140,7 +141,10 @@ export default function HomePage() {
                   : isMobile
                     ? `calc((90vw + ${heroVisualScale * 10}vw) * 1.2)`
                     : `calc((90vw + ${heroVisualScale * 10}vw) * 9 / 16)`,
-                borderRadius: heroVisualScale >= 1 ? '0px' : '32px',
+                borderTopLeftRadius: heroVisualScale >= 1 ? '0px' : '32px',
+                borderTopRightRadius: heroVisualScale >= 1 ? '0px' : '32px',
+                borderBottomLeftRadius: heroVisualScale >= 1 ? '0px' : '32px',
+                borderBottomRightRadius: heroVisualScale >= 1 ? '0px' : '32px',
                 backgroundImage: 'linear-gradient(143.3deg, color(display-p3 0.812 0.918 0.988), color(display-p3 0.973 0.871 0.984))',
                 willChange: 'width, height, border-radius',
                 display: 'flex',
@@ -156,7 +160,12 @@ export default function HomePage() {
         </section>
 
         {/* Social Proof Section */}
-        <section className="py-16 bg-white border-t border-gray-100 overflow-hidden">
+        <section
+          className="py-16 bg-white overflow-hidden relative z-20"
+          style={{
+            marginTop: `${heroVisualScale * 64}px`,
+          }}
+        >
           <div className="w-full">
             {/* Infinite Logo Marquee */}
             <div className="relative">
