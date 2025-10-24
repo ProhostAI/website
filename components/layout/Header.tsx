@@ -15,27 +15,27 @@ const featuresMenu = [
   {
     name: 'AI Messaging',
     href: '/#features',
-    description: 'AI-powered guest communications',
+    description: 'AI-suggested replies to guest messages',
   },
   {
-    name: 'AI Tasks',
+    name: 'AI Autopilot',
     href: '/#features',
-    description: 'Automated maintenance management',
-  },
-  {
-    name: 'Cleanings',
-    href: '/#features',
-    description: 'Smart cleaning coordination',
-  },
-  {
-    name: 'Calendar',
-    href: '/#features',
-    description: 'Multi-property calendar view',
+    description: '24/7 coverage for guest messages',
   },
   {
     name: 'Upsells',
     href: '/#features',
-    description: 'Maximize booking revenue',
+    description: 'Each revenues from open gap nights',
+  },
+  {
+    name: 'Calendar',
+    href: '/#features',
+    description: 'The best calendar for hosts available on desktop & mobile',
+  },
+  {
+    name: 'Native apps',
+    href: '/downloads',
+    description: 'Available on iOS & Android',
   },
 ];
 
@@ -174,20 +174,37 @@ export default function Header() {
                 {featuresOpen && (
                   <div
                     data-dropdown
-                    className="absolute left-0 top-full mt-2 w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                    className="absolute left-0 top-full mt-2 w-full sm:w-[640px] bg-white border border-gray-200 shadow-lg z-50"
+                    style={{ borderRadius: '32px' }}
                   >
-                    <div className="p-4">
-                      <div className="grid grid-cols-1 gap-2">
+                    <div className="p-6 sm:p-10">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-10 gap-y-0">
                         {featuresMenu.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="block p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors"
                           >
-                            <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                            <h4
+                              className="text-[16px] font-medium text-gray-900"
+                              style={{
+                                lineHeight: '22px',
+                                letterSpacing: '-0.18px',
+                                fontWeight: 500,
+                                marginBottom: '4px'
+                              }}
+                            >
                               {item.name}
                             </h4>
-                            <p className="text-xs text-gray-500">
+                            <p
+                              className="text-[14px] font-normal"
+                              style={{
+                                lineHeight: '20px',
+                                color: '#667085',
+                                fontWeight: 400,
+                                marginTop: 0
+                              }}
+                            >
                               {item.description}
                             </p>
                           </Link>
@@ -241,22 +258,39 @@ export default function Header() {
                 {resourcesOpen && (
                   <div
                     data-dropdown
-                    className="absolute left-0 top-full mt-2 w-[500px] bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                    className="absolute left-0 top-full mt-2 w-full sm:w-[640px] bg-white border border-gray-200 shadow-lg z-50"
+                    style={{ borderRadius: '32px' }}
                   >
-                    <div className="p-4">
-                      <div className="grid grid-cols-1 gap-2">
+                    <div className="p-6 sm:p-10">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-10 gap-y-0">
                         {resourcesMenu.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
                             target={item.external ? "_blank" : undefined}
                             rel={item.external ? "noopener noreferrer" : undefined}
-                            className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="block p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors"
                           >
-                            <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                            <h4
+                              className="text-[16px] font-medium text-gray-900"
+                              style={{
+                                lineHeight: '22px',
+                                letterSpacing: '-0.18px',
+                                fontWeight: 500,
+                                marginBottom: '4px'
+                              }}
+                            >
                               {item.name}
                             </h4>
-                            <p className="text-xs text-gray-500">
+                            <p
+                              className="text-[14px] font-normal"
+                              style={{
+                                lineHeight: '20px',
+                                color: '#667085',
+                                fontWeight: 400,
+                                marginTop: 0
+                              }}
+                            >
                               {item.description}
                             </p>
                           </Link>
