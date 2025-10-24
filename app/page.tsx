@@ -242,7 +242,7 @@ export default function HomePage() {
         </section>
 
         {/* Integrations Section */}
-        <section className="section-padding bg-white" style={{ paddingTop: '140px', paddingBottom: '140px' }}>
+        <section className="section-padding bg-white" style={{ paddingTop: '0px', paddingBottom: '140px' }}>
           <div className="mx-auto px-4" style={{ maxWidth: '1320px' }}>
             <div style={{
               backgroundColor: '#f9fafb',
