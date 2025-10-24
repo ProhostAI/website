@@ -462,6 +462,141 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Calendar Section with Tabs */}
+        <section className="section-padding bg-white" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+          <div className="mx-auto px-4" style={{ maxWidth: '1320px' }}>
+            <div>
+              <p className="mb-3" style={{
+                fontSize: '16px',
+                lineHeight: '28px',
+                fontWeight: 600,
+                color: '#6366F1'
+              }}>
+                Calendar
+              </p>
+              <h2 className="font-bold text-black mb-10" style={{
+                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                lineHeight: 'clamp(2.5rem, 6vw, 4.5rem)',
+                fontWeight: 700
+              }}>
+                Multicalendar available on <span style={{ display: 'inline-block' }}>desktop & mobile</span>
+              </h2>
+              <p style={{
+                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                lineHeight: 'clamp(1.5rem, 2.5vw, 1.875rem)',
+                fontWeight: 400,
+                color: '#667085',
+                maxWidth: '800px',
+                marginBottom: 'clamp(40px, 5vw, 60px)'
+              }}>
+                View you bookings, spot gaps, and keep track of cleaning or maintenance days — all in one clean, simple view on both web and the ProhostAI mobile apps on iOS and Android.
+              </p>
+              <div className="flex justify-center">
+                <div style={{
+                  backgroundColor: '#F9FAFB',
+                  borderRadius: 'clamp(32px, 5vw, 56px)',
+                  paddingTop: 'clamp(32px, 5vw, 60px)',
+                  paddingLeft: 'clamp(24px, 5vw, 60px)',
+                  paddingRight: 'clamp(24px, 5vw, 60px)',
+                  paddingBottom: '0',
+                  maxWidth: '1320px',
+                  width: '100%',
+                  height: 'clamp(500px, 60vw, 800px)',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  {/* Tab Content */}
+                  <div className="relative w-full h-full">
+                    {activeCalendarTab === 'all-in-one' && (
+                      <div className="flex justify-center items-center md:items-end h-full" style={{ animation: 'slideIn 0.3s ease-out' }}>
+                        <img
+                          src="/images/calendar-new-1_1.webp"
+                          alt="All-in-one calendar view"
+                          className="max-w-full h-auto"
+                          style={{
+                            borderTopLeftRadius: 'clamp(16px, 2vw, 24px)',
+                            borderTopRightRadius: 'clamp(16px, 2vw, 24px)'
+                          }}
+                        />
+                      </div>
+                    )}
+                    {activeCalendarTab === 'focus' && (
+                      <div className="flex justify-center items-center md:items-end h-full" style={{ animation: 'slideIn 0.3s ease-out' }}>
+                        <img
+                          src="/images/calendar-new-2_1.webp"
+                          alt="Focus calendar view"
+                          className="max-w-full h-auto"
+                          style={{
+                            borderTopLeftRadius: 'clamp(16px, 2vw, 24px)',
+                            borderTopRightRadius: 'clamp(16px, 2vw, 24px)'
+                          }}
+                        />
+                      </div>
+                    )}
+                    {activeCalendarTab === 'mobile' && (
+                      <div className="flex justify-center items-center md:items-end" style={{
+                        animation: 'slideIn 0.3s ease-out',
+                        height: '100%',
+                        overflow: 'hidden'
+                      }}>
+                        <img
+                          src="/images/calendar-mobile-1_1.avif"
+                          alt="Mobile calendar"
+                          className="h-auto max-h-full md:max-h-none"
+                          style={{
+                            maxHeight: 'clamp(400px, 90%, 900px)',
+                            width: 'auto',
+                            transform: 'translateY(clamp(0px, 10vw, 100px))',
+                            borderTopLeftRadius: 'clamp(16px, 2vw, 24px)',
+                            borderTopRightRadius: 'clamp(16px, 2vw, 24px)'
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Tabs */}
+              <div className="flex justify-center mt-8">
+                <div className="inline-flex rounded-lg border border-gray-200 p-1 bg-gray-50">
+                  <button
+                    onClick={() => setActiveCalendarTab('all-in-one')}
+                    className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+                      activeCalendarTab === 'all-in-one'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    All-in-one view
+                  </button>
+                  <button
+                    onClick={() => setActiveCalendarTab('focus')}
+                    className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+                      activeCalendarTab === 'focus'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    Focus on one listing
+                  </button>
+                  <button
+                    onClick={() => setActiveCalendarTab('mobile')}
+                    className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+                      activeCalendarTab === 'mobile'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    Mobile app
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Interactive Cleanings Demo Section */}
         <section className="py-24 bg-gradient-to-b from-green-50 to-white">
           <div className="max-width-container section-padding">
@@ -493,71 +628,6 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Calendar Section with Tabs */}
-        <section className="py-24 bg-white">
-          <div className="max-width-container section-padding">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                Calendar
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Multicalendar available on desktop & mobile
-              </h2>
-            </div>
-
-            {/* Tabs */}
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex rounded-lg border border-gray-200 p-1 bg-gray-50">
-                <button
-                  onClick={() => setActiveCalendarTab('all-in-one')}
-                  className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                    activeCalendarTab === 'all-in-one'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  All-in-one view
-                </button>
-                <button
-                  onClick={() => setActiveCalendarTab('focus')}
-                  className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                    activeCalendarTab === 'focus'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  Focus on one listing
-                </button>
-                <button
-                  onClick={() => setActiveCalendarTab('mobile')}
-                  className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                    activeCalendarTab === 'mobile'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  Mobile app
-                </button>
-              </div>
-            </div>
-
-            {/* Tab Content */}
-            <div className="relative">
-              {activeCalendarTab === 'all-in-one' && (
-                <img src="/images/calendar-new-1_1.webp" alt="All-in-one calendar view" className="w-full rounded-2xl shadow-2xl" />
-              )}
-              {activeCalendarTab === 'focus' && (
-                <img src="/images/calendar-new-2_1.webp" alt="Focus calendar view" className="w-full rounded-2xl shadow-2xl" />
-              )}
-              {activeCalendarTab === 'mobile' && (
-                <div className="flex justify-center">
-                  <img src="/images/calendar-mobile-1_1.avif" alt="Mobile calendar" className="h-[600px] rounded-2xl shadow-2xl" />
-                </div>
-              )}
             </div>
           </div>
         </section>
