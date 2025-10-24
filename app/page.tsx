@@ -156,25 +156,34 @@ export default function HomePage() {
         </section>
 
         {/* Social Proof Section */}
-        <section className="py-12 bg-white border-t border-gray-100">
-          <div className="max-width-container section-padding">
-            <div className="text-center">
-              <p className="text-sm text-gray-500 mb-6">Backed by top investors</p>
-              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-                <img src="/images/yc.png" alt="Y Combinator" className="h-10 object-contain opacity-60 hover:opacity-100 transition-opacity" />
-                <img src="/images/pear.png" alt="Pear VC" className="h-10 object-contain opacity-60 hover:opacity-100 transition-opacity" />
-                <span className="text-xl font-semibold text-gray-400">Amino Capital</span>
-                <span className="text-xl font-semibold text-gray-400">Data Tech Fund</span>
-                <span className="text-xl font-semibold text-gray-400">Pioneer</span>
-              </div>
+        <section className="py-16 bg-white border-t border-gray-100 overflow-hidden">
+          <div className="w-full">
+            {/* Infinite Logo Marquee */}
+            <div className="relative">
+              <div className="flex items-center gap-16 animate-marquee">
+                {/* First set */}
+                <p className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Backed by top investors</p>
+                <img src="/images/yc.png" alt="Y Combinator" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                <img src="/images/pear.png" alt="Pear VC" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Amino Capital</span>
+                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Data Tech Fund</span>
+                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Pioneer</span>
+                <p className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Founded by team from</p>
+                <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 flex-shrink-0" />
+                <img src="/images/dropbox.png" alt="Dropbox" className="h-8 object-contain opacity-60 flex-shrink-0" />
+                <img src="/images/harvard.png" alt="Harvard" className="h-10 object-contain opacity-60 flex-shrink-0" />
 
-              <div className="mt-8">
-                <p className="text-sm text-gray-500 mb-6">Founded by team from</p>
-                <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-                  <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/images/dropbox.png" alt="Dropbox" className="h-8 object-contain opacity-60 hover:opacity-100 transition-opacity" />
-                  <img src="/images/harvard.png" alt="Harvard" className="h-10 object-contain opacity-60 hover:opacity-100 transition-opacity" />
-                </div>
+                {/* Duplicate set for seamless loop */}
+                <p className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Backed by top investors</p>
+                <img src="/images/yc.png" alt="Y Combinator" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                <img src="/images/pear.png" alt="Pear VC" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Amino Capital</span>
+                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Data Tech Fund</span>
+                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Pioneer</span>
+                <p className="text-sm text-gray-500 whitespace-nowrap flex-shrink-0">Founded by team from</p>
+                <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 flex-shrink-0" />
+                <img src="/images/dropbox.png" alt="Dropbox" className="h-8 object-contain opacity-60 flex-shrink-0" />
+                <img src="/images/harvard.png" alt="Harvard" className="h-10 object-contain opacity-60 flex-shrink-0" />
               </div>
             </div>
           </div>
