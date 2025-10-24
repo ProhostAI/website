@@ -45,8 +45,8 @@ export default function HomePage() {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
 
-        // Animation progresses over 1.2 viewports for desktop, 0.8 for mobile
-        const scrollMultiplier = isMobile ? 0.8 : 1.2;
+        // Animation progresses over 0.6 viewports for desktop, 0.5 for mobile (faster animation)
+        const scrollMultiplier = isMobile ? 0.5 : 0.6;
         const progress = Math.min(1, scrollY / (windowHeight * scrollMultiplier));
 
         setHeroVisualScale(progress);
@@ -127,8 +127,7 @@ export default function HomePage() {
           ref={heroVisualRef}
           className="relative bg-white -mt-6 sm:-mt-8 md:-mt-12 lg:-mt-16 z-10"
           style={{
-            height: isMobile ? 'calc(70vh + 64px)' : 'calc(100vh + 64px)',
-            paddingBottom: '64px',
+            height: isMobile ? '70vh' : '100vh',
           }}
         >
           <div className="sticky top-0 w-full flex items-center justify-center z-10" style={{ height: isMobile ? '70vh' : '100vh' }}>
@@ -160,12 +159,7 @@ export default function HomePage() {
         </section>
 
         {/* Social Proof Section */}
-        <section
-          className="py-16 bg-white overflow-hidden relative z-20"
-          style={{
-            marginTop: `${heroVisualScale * 64}px`,
-          }}
-        >
+        <section className="bg-white overflow-hidden relative z-0" style={{ paddingTop: '140px', paddingBottom: '140px' }}>
           <div className="w-full">
             {/* Infinite Logo Marquee */}
             <div className="relative">
