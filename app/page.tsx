@@ -143,9 +143,14 @@ export default function HomePage() {
                 borderRadius: heroVisualScale >= 1 ? '0px' : '32px',
                 backgroundImage: 'linear-gradient(143.3deg, color(display-p3 0.812 0.918 0.988), color(display-p3 0.973 0.871 0.984))',
                 willChange: 'width, height, border-radius',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <RiveComponent style={{ width: isMobile ? '80%' : '60%', height: isMobile ? '50%' : '60%' }} />
+              <div style={{ width: isMobile ? '80%' : '60%', height: isMobile ? '50%' : '60%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <RiveComponent style={{ width: '100%', height: '100%' }} />
+              </div>
             </div>
           </div>
         </section>
