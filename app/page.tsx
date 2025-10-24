@@ -38,17 +38,19 @@ export default function HomePage() {
                 cleaning & upsells so vacation rental hosts can scale stress-free. Available for hosts
                 on Airbnb, Hostaway and Guesty.
               </p>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
+              <div className="mt-10 flex items-center justify-center gap-x-3">
                 <Link
                   href="https://app.prohost.ai/signup"
                   target="_blank"
-                  className="rounded-lg bg-primary-600 px-8 py-4 text-base font-semibold text-white shadow-lg hover:bg-primary-700 transition-all hover:shadow-xl transform hover:-translate-y-0.5"
+                  className="rounded-full bg-black px-8 py-[18px] text-[20px] leading-[28px] font-semibold text-white hover:bg-gray-800 transition-all"
+                  style={{ paddingLeft: '32px', paddingRight: '32px' }}
                 >
                   Try 14 days FREE
                 </Link>
                 <Link
                   href="/downloads"
-                  className="text-base font-semibold leading-6 text-gray-900 hover:text-primary-600 transition-colors flex items-center gap-2"
+                  className="rounded-full border border-black px-8 py-[18px] text-[20px] leading-[28px] font-semibold text-black hover:bg-gray-50 transition-all flex items-center gap-2"
+                  style={{ paddingLeft: '32px', paddingRight: '32px' }}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
