@@ -11,6 +11,7 @@ import CleaningsDemo from '@/components/CleaningsDemo';
 export default function HomePage() {
   const [activeCalendarTab, setActiveCalendarTab] = useState('all-in-one');
   const [heroVisualScale, setHeroVisualScale] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const heroVisualRef = useRef<HTMLDivElement>(null);
 
   const { RiveComponent } = useRive({
@@ -23,6 +24,17 @@ export default function HomePage() {
   });
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
     let rafId: number;
 
     const handleScroll = () => {
@@ -33,8 +45,9 @@ export default function HomePage() {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
 
-        // Animation progresses over 1.5 viewports for smoother feel
-        const progress = Math.min(1, scrollY / (windowHeight * 1.2));
+        // Animation progresses over 1.2 viewports for desktop, 0.8 for mobile
+        const scrollMultiplier = isMobile ? 0.8 : 1.2;
+        const progress = Math.min(1, scrollY / (windowHeight * scrollMultiplier));
 
         setHeroVisualScale(progress);
       });
@@ -47,7 +60,7 @@ export default function HomePage() {
       window.removeEventListener('scroll', handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
@@ -112,25 +125,27 @@ export default function HomePage() {
         {/* Hero Visual Section */}
         <section
           ref={heroVisualRef}
-          className="relative bg-white -mt-8 sm:-mt-12 md:-mt-16"
+          className="relative bg-white -mt-6 sm:-mt-8 md:-mt-12 lg:-mt-16"
           style={{
-            height: '100vh',
+            height: isMobile ? '70vh' : '100vh',
           }}
         >
-          <div className="sticky top-0 w-full h-screen flex items-center justify-center">
+          <div className="sticky top-0 w-full flex items-center justify-center" style={{ height: isMobile ? '70vh' : '100vh' }}>
             <div
               className="flex items-center justify-center overflow-hidden"
               style={{
                 width: `${90 + heroVisualScale * 10}vw`,
                 height: heroVisualScale >= 1
-                  ? '100vh'
-                  : `calc((90vw + ${heroVisualScale * 10}vw) * 9 / 16)`,
+                  ? (isMobile ? '70vh' : '100vh')
+                  : isMobile
+                    ? `calc((90vw + ${heroVisualScale * 10}vw) * 1.2)`
+                    : `calc((90vw + ${heroVisualScale * 10}vw) * 9 / 16)`,
                 borderRadius: heroVisualScale >= 1 ? '0px' : '32px',
                 backgroundImage: 'linear-gradient(143.3deg, color(display-p3 0.812 0.918 0.988), color(display-p3 0.973 0.871 0.984))',
                 willChange: 'width, height, border-radius',
               }}
             >
-              <RiveComponent style={{ width: '60%', height: '60%' }} />
+              <RiveComponent style={{ width: isMobile ? '80%' : '60%', height: isMobile ? '50%' : '60%' }} />
             </div>
           </div>
         </section>
