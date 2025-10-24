@@ -174,8 +174,8 @@ export default function Header() {
                 {featuresOpen && (
                   <div
                     data-dropdown
-                    className="absolute left-0 top-full mt-2 w-full sm:w-[640px] bg-white border border-gray-200 shadow-lg z-50"
-                    style={{ borderRadius: '32px' }}
+                    className="absolute top-full mt-2 w-full sm:w-[640px] bg-white border border-gray-200 shadow-lg z-50"
+                    style={{ borderRadius: '32px', left: '-44px' }}
                   >
                     <div className="p-6 sm:p-10">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-10 gap-y-0">
@@ -183,7 +183,7 @@ export default function Header() {
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="block p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="block p-4 rounded-lg hover:bg-gray-50 transition-colors"
                           >
                             <h4
                               className="text-[16px] font-medium text-gray-900"
@@ -258,8 +258,8 @@ export default function Header() {
                 {resourcesOpen && (
                   <div
                     data-dropdown
-                    className="absolute left-0 top-full mt-2 w-full sm:w-[640px] bg-white border border-gray-200 shadow-lg z-50"
-                    style={{ borderRadius: '32px' }}
+                    className="absolute top-full mt-2 w-full sm:w-[640px] bg-white border border-gray-200 shadow-lg z-50"
+                    style={{ borderRadius: '32px', left: '-44px' }}
                   >
                     <div className="p-6 sm:p-10">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-10 gap-y-0">
@@ -269,7 +269,7 @@ export default function Header() {
                             href={item.href}
                             target={item.external ? "_blank" : undefined}
                             rel={item.external ? "noopener noreferrer" : undefined}
-                            className="block p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="block p-4 rounded-lg hover:bg-gray-50 transition-colors"
                           >
                             <h4
                               className="text-[16px] font-medium text-gray-900"
