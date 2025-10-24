@@ -18,7 +18,7 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-white">
           <div className="max-w-[1240px] mx-auto section-padding py-24 sm:py-32">
-            <div className="text-left">
+            <div className="text-center">
               {/* Announcement Badge */}
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 <span className="relative flex h-2 w-2">
@@ -28,16 +28,17 @@ export default function HomePage() {
                 New feature: AI Autopilot
               </div>
 
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                All-in-One AI assistant for{' '}
+              <h1 className="text-[clamp(2.5rem,8vw,5.75rem)] font-bold tracking-tight text-gray-900 leading-[clamp(2.5rem,8vw,5.5rem)]">
+                All-in-One<br />
+                AI assistant for<br />
                 <span className="text-primary-600">vacation rental hosts</span>
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl">
+              <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
                 ProhostAI – the all-in-one AI assistant that automates guest messaging, maintenance,
                 cleaning & upsells so vacation rental hosts can scale stress-free. Available for hosts
                 on Airbnb, Hostaway and Guesty.
               </p>
-              <div className="mt-10 flex items-center gap-x-6">
+              <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Link
                   href="https://app.prohost.ai/signup"
                   target="_blank"
@@ -57,7 +58,7 @@ export default function HomePage() {
               </div>
 
               {/* Product Hunt Badge */}
-              <div className="mt-8">
+              <div className="mt-8 flex justify-center">
                 <a href="https://www.producthunt.com/products/prohostai" target="_blank" rel="noopener noreferrer">
                   <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1019663&theme=light"
                        alt="ProhostAI - AI assistant for Airbnb messaging, tasks, and cleanings | Product Hunt"
