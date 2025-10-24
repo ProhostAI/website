@@ -45,7 +45,7 @@ export default function HomePage() {
 
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-white" style={{ marginTop: '84px', marginBottom: '150px' }}>
+        <section className="relative overflow-hidden bg-white mt-8 sm:mt-12 md:mt-[84px] mb-12 sm:mb-20 md:mb-[150px]">
           <div className="max-w-[1320px] mx-auto section-padding py-12 sm:py-16 md:py-20">
             <div className="text-center">
               {/* Announcement Badge */}
