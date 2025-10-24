@@ -17,7 +17,7 @@ export default function HomePage() {
       <main className="pt-16">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-white">
-          <div className="max-w-[1240px] mx-auto section-padding py-24 sm:py-32">
+          <div className="max-w-[1320px] mx-auto section-padding py-24 sm:py-32">
             <div className="text-center">
               {/* Announcement Badge */}
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-6" style={{ backgroundColor: '#F2F4F7' }}>
@@ -47,12 +47,13 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/downloads"
-                  className="w-full sm:w-auto rounded-full border border-black py-[18px] text-base sm:text-[20px] leading-6 sm:leading-[28px] font-semibold text-black hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto rounded-full border border-black py-[18px] text-base sm:text-[20px] leading-6 sm:leading-[28px] font-semibold text-black hover:bg-gray-50 transition-all flex items-center justify-center gap-4"
                   style={{ paddingLeft: 'clamp(24px, 5vw, 32px)', paddingRight: 'clamp(24px, 5vw, 32px)' }}
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
+                  <div className="flex items-center gap-2">
+                    <img src="/images/appstore.svg" alt="App Store" className="h-6" />
+                    <img src="/images/googleplay.svg" alt="Google Play" className="h-6" />
+                  </div>
                   Download for Mobile
                 </Link>
               </div>
