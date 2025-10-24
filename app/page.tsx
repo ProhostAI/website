@@ -107,15 +107,16 @@ export default function HomePage() {
             height: '100vh',
           }}
         >
-          <div className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden">
+          <div className="sticky top-0 w-full h-screen flex items-center justify-center">
             <div
-              className="bg-gray-200 flex items-center justify-center"
+              className="flex items-center justify-center"
               style={{
                 width: `${90 + heroVisualScale * 10}vw`,
                 height: heroVisualScale >= 1
                   ? '100vh'
                   : `calc((90vw + ${heroVisualScale * 10}vw) * 9 / 16)`,
-                borderRadius: `${Math.max(0, 16 * (1 - heroVisualScale))}px`,
+                borderRadius: heroVisualScale >= 1 ? '0px' : '32px',
+                backgroundImage: 'linear-gradient(143.3deg, color(display-p3 0.812 0.918 0.988), color(display-p3 0.973 0.871 0.984))',
                 willChange: 'width, height, border-radius',
               }}
             >
