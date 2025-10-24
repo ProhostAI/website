@@ -20,7 +20,7 @@ export default function HomePage() {
           <div className="max-w-[1320px] mx-auto section-padding py-24 sm:py-32">
             <div className="text-center">
               {/* Announcement Badge */}
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-6" style={{ backgroundColor: '#F2F4F7' }}>
+              <div className="inline-flex items-center gap-2 rounded-full mb-6" style={{ backgroundColor: '#F2F4F7', paddingLeft: '20px', paddingRight: '20px', paddingTop: '7px', paddingBottom: '7px' }}>
                 <span className="text-sm md:text-[16px] leading-5 md:leading-[22px]">
                   <span className="font-semibold">New feature:</span> <span className="font-normal">AI Autopilot</span> ↗
                 </span>
