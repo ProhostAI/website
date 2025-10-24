@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
@@ -9,6 +9,35 @@ import CleaningsDemo from '@/components/CleaningsDemo';
 
 export default function HomePage() {
   const [activeCalendarTab, setActiveCalendarTab] = useState('all-in-one');
+  const [heroVisualScale, setHeroVisualScale] = useState(0);
+  const heroVisualRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let rafId: number;
+
+    const handleScroll = () => {
+      // Use RAF for smoother animation
+      if (rafId) cancelAnimationFrame(rafId);
+
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+
+        // Animation progresses over 1.5 viewports for smoother feel
+        const progress = Math.min(1, scrollY / (windowHeight * 1.2));
+
+        setHeroVisualScale(progress);
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   return (
     <>
@@ -16,8 +45,8 @@ export default function HomePage() {
 
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-white">
-          <div className="max-w-[1320px] mx-auto section-padding py-24 sm:py-32">
+        <section className="relative overflow-hidden bg-white" style={{ marginTop: '100px', marginBottom: '100px' }}>
+          <div className="max-w-[1320px] mx-auto section-padding py-12 sm:py-16 md:py-20">
             <div className="text-center">
               {/* Announcement Badge */}
               <div className="inline-flex items-center gap-2 rounded-full mb-6" style={{ backgroundColor: '#F2F4F7', paddingLeft: '20px', paddingRight: '20px', paddingTop: '7px', paddingBottom: '7px' }}>
@@ -71,9 +100,25 @@ export default function HomePage() {
         </section>
 
         {/* Hero Visual Section */}
-        <section className="relative overflow-hidden bg-white py-12">
-          <div className="max-w-[1320px] mx-auto section-padding">
-            <div className="w-full h-[600px] bg-gray-200 rounded-2xl flex items-center justify-center">
+        <section
+          ref={heroVisualRef}
+          className="relative bg-white -mt-8 sm:-mt-12 md:-mt-16"
+          style={{
+            height: '100vh',
+          }}
+        >
+          <div className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden">
+            <div
+              className="bg-gray-200 flex items-center justify-center"
+              style={{
+                width: `${90 + heroVisualScale * 10}vw`,
+                height: heroVisualScale >= 1
+                  ? '100vh'
+                  : `calc((90vw + ${heroVisualScale * 10}vw) * 9 / 16)`,
+                borderRadius: `${Math.max(0, 16 * (1 - heroVisualScale))}px`,
+                willChange: 'width, height, border-radius',
+              }}
+            >
               <p className="text-gray-400 text-lg">Hero Visual Placeholder</p>
             </div>
           </div>
