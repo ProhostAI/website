@@ -303,10 +303,25 @@ export default function HomePage() {
               {aiFeatures.map((feature) => (
                 <div key={feature.title} className="flex flex-col lg:grid gap-0 overflow-hidden" style={{ gridTemplateColumns: '40% 60%', backgroundColor: '#F9FAFB', borderRadius: '56px', height: 'auto', minHeight: '400px' }}>
                   {/* Text Section */}
-                  <div className="flex flex-col justify-center p-8 lg:p-12 lg:h-[655px]" style={{ paddingLeft: 'clamp(24px, 5vw, 120px)' }}>
+                  <div className="flex flex-col justify-center lg:h-[655px]" style={{
+                    paddingTop: 'clamp(40px, 6vw, 80px)',
+                    paddingBottom: 'clamp(40px, 6vw, 80px)',
+                    paddingLeft: 'clamp(32px, 6vw, 120px)',
+                    paddingRight: 'clamp(32px, 6vw, 80px)'
+                  }}>
                     <img src={feature.icon} alt={feature.title} className="flex-shrink-0 mb-4" style={{ width: '32px', height: '32px' }} />
-                    <h3 className="text-gray-900" style={{ fontSize: '35px', lineHeight: '45px', fontWeight: 600, marginBottom: '40px' }}>{feature.title}</h3>
-                    <p style={{ fontSize: '20px', lineHeight: '30px', fontWeight: 400, color: '#667085' }}>{feature.description}</p>
+                    <h3 className="text-gray-900" style={{
+                      fontSize: 'clamp(28px, 4vw, 35px)',
+                      lineHeight: 'clamp(36px, 5vw, 45px)',
+                      fontWeight: 600,
+                      marginBottom: 'clamp(24px, 3vw, 40px)'
+                    }}>{feature.title}</h3>
+                    <p style={{
+                      fontSize: 'clamp(16px, 2vw, 20px)',
+                      lineHeight: 'clamp(24px, 2.5vw, 30px)',
+                      fontWeight: 400,
+                      color: '#667085'
+                    }}>{feature.description}</p>
                   </div>
 
                   {/* Image Section */}
