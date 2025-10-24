@@ -15,27 +15,27 @@ const featuresMenu = [
   {
     name: 'AI Messaging',
     href: '/#features',
-    description: 'AI-powered guest communications',
+    description: 'AI-suggested replies to guest messages',
   },
   {
-    name: 'AI Tasks',
+    name: 'AI Autopilot',
     href: '/#features',
-    description: 'Automated maintenance management',
-  },
-  {
-    name: 'Cleanings',
-    href: '/#features',
-    description: 'Smart cleaning coordination',
-  },
-  {
-    name: 'Calendar',
-    href: '/#features',
-    description: 'Multi-property calendar view',
+    description: '24/7 coverage for guest messages',
   },
   {
     name: 'Upsells',
     href: '/#features',
-    description: 'Maximize booking revenue',
+    description: 'Each revenues from open gap nights',
+  },
+  {
+    name: 'Calendar',
+    href: '/#features',
+    description: 'The best calendar for hosts available on desktop & mobile',
+  },
+  {
+    name: 'Native apps',
+    href: '/downloads',
+    description: 'Available on iOS & Android',
   },
 ];
 
@@ -77,32 +77,34 @@ export default function Header() {
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [featuresTimeout, setFeaturesTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [resourcesTimeout, setResourcesTimeout] = useState<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
 
-  const handleDropdownToggle = (dropdown: 'features' | 'resources') => {
-    if (dropdown === 'features') {
-      if (resourcesOpen) {
-        // Switching from Resources to Features - no animation
-        setResourcesOpen(false);
-        setFeaturesOpen(true);
-        setIsAnimating(false);
-      } else {
-        // Opening Features fresh - animate
-        setFeaturesOpen(!featuresOpen);
-        setIsAnimating(!featuresOpen);
-      }
-    } else {
-      if (featuresOpen) {
-        // Switching from Features to Resources - no animation
-        setFeaturesOpen(false);
-        setResourcesOpen(true);
-        setIsAnimating(false);
-      } else {
-        // Opening Resources fresh - animate
-        setResourcesOpen(!resourcesOpen);
-        setIsAnimating(!resourcesOpen);
-      }
-    }
+  const handleFeaturesEnter = () => {
+    if (featuresTimeout) clearTimeout(featuresTimeout);
+    setFeaturesOpen(true);
+    setResourcesOpen(false);
+  };
+
+  const handleFeaturesLeave = () => {
+    const timeout = setTimeout(() => {
+      setFeaturesOpen(false);
+    }, 100);
+    setFeaturesTimeout(timeout);
+  };
+
+  const handleResourcesEnter = () => {
+    if (resourcesTimeout) clearTimeout(resourcesTimeout);
+    setResourcesOpen(true);
+    setFeaturesOpen(false);
+  };
+
+  const handleResourcesLeave = () => {
+    const timeout = setTimeout(() => {
+      setResourcesOpen(false);
+    }, 100);
+    setResourcesTimeout(timeout);
   };
 
   // Close dropdowns when clicking outside
@@ -145,11 +147,16 @@ export default function Header() {
             {/* Desktop navigation */}
             <div className="hidden lg:flex lg:gap-x-2 lg:items-center">
               {/* Features Dropdown */}
-              <div className="relative">
+              <div
+                className="relative"
+                onMouseEnter={handleFeaturesEnter}
+                onMouseLeave={handleFeaturesLeave}
+              >
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
-                  style={{ lineHeight: '21px' }}
-                  onClick={() => handleDropdownToggle('features')}
+                  className="flex items-center text-[16px] font-medium text-black transition-colors px-3 py-1.5"
+                  style={{ lineHeight: '22px', color: featuresOpen ? '#333741' : 'inherit' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#333741'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = featuresOpen ? '#333741' : 'black'}
                 >
                   Features
                   <svg
@@ -162,27 +169,78 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </button>
+
+                {/* Features Dropdown Menu */}
+                {featuresOpen && (
+                  <div
+                    data-dropdown
+                    className="absolute top-full mt-2 w-full sm:w-[640px] bg-white border border-gray-200 shadow-lg z-50"
+                    style={{ borderRadius: '32px', left: '-44px' }}
+                  >
+                    <div className="p-6 sm:p-10">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-10 gap-y-0">
+                        {featuresMenu.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                          >
+                            <h4
+                              className="text-[16px] font-medium text-gray-900"
+                              style={{
+                                lineHeight: '22px',
+                                letterSpacing: '-0.18px',
+                                fontWeight: 500,
+                                marginBottom: '4px'
+                              }}
+                            >
+                              {item.name}
+                            </h4>
+                            <p
+                              className="text-[14px] font-normal"
+                              style={{
+                                lineHeight: '20px',
+                                color: '#667085',
+                                fontWeight: 400,
+                                marginTop: 0
+                              }}
+                            >
+                              {item.description}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-medium transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100 ${
+                  className={`text-[16px] font-medium transition-colors px-3 py-1.5 ${
                     pathname === item.href ? 'text-primary-600' : 'text-black'
                   }`}
-                  style={{ lineHeight: '21px' }}
+                  style={{ lineHeight: '22px' }}
+                  onMouseEnter={(e) => { if (pathname !== item.href) e.currentTarget.style.color = '#333741'; }}
+                  onMouseLeave={(e) => { if (pathname !== item.href) e.currentTarget.style.color = 'black'; }}
                 >
                   {item.name}
                 </Link>
               ))}
 
               {/* Resources Dropdown */}
-              <div className="relative">
+              <div
+                className="relative"
+                onMouseEnter={handleResourcesEnter}
+                onMouseLeave={handleResourcesLeave}
+              >
                 <button
-                  className="flex items-center text-sm font-medium text-black transition-all rounded-lg px-3 py-1.5 hover:bg-gray-100"
-                  style={{ lineHeight: '21px' }}
-                  onClick={() => handleDropdownToggle('resources')}
+                  className="flex items-center text-[16px] font-medium text-black transition-colors px-3 py-1.5"
+                  style={{ lineHeight: '22px', color: resourcesOpen ? '#333741' : 'inherit' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#333741'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = resourcesOpen ? '#333741' : 'black'}
                 >
                   Resources
                   <svg
@@ -195,6 +253,52 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </button>
+
+                {/* Resources Dropdown Menu */}
+                {resourcesOpen && (
+                  <div
+                    data-dropdown
+                    className="absolute top-full mt-2 w-full sm:w-[640px] bg-white border border-gray-200 shadow-lg z-50"
+                    style={{ borderRadius: '32px', left: '-44px' }}
+                  >
+                    <div className="p-6 sm:p-10">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-10 gap-y-0">
+                        {resourcesMenu.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                            className="block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                          >
+                            <h4
+                              className="text-[16px] font-medium text-gray-900"
+                              style={{
+                                lineHeight: '22px',
+                                letterSpacing: '-0.18px',
+                                fontWeight: 500,
+                                marginBottom: '4px'
+                              }}
+                            >
+                              {item.name}
+                            </h4>
+                            <p
+                              className="text-[14px] font-normal"
+                              style={{
+                                lineHeight: '20px',
+                                color: '#667085',
+                                fontWeight: 400,
+                                marginTop: 0
+                              }}
+                            >
+                              {item.description}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -223,8 +327,10 @@ export default function Header() {
           <div className="hidden lg:flex lg:items-center lg:gap-x-[30px]">
             <Link
               href="https://app.prohost.ai/signin"
-              className="text-sm font-medium text-black hover:text-primary-600 transition-colors whitespace-nowrap"
-              style={{ lineHeight: '21px' }}
+              className="text-[16px] font-medium text-black transition-colors whitespace-nowrap"
+              style={{ lineHeight: '22px' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#333741'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'black'}
             >
               Log In
             </Link>
@@ -232,15 +338,15 @@ export default function Header() {
               <Link
                 href="https://cal.com/billu/prohostdemo"
                 target="_blank"
-                className="rounded-full border border-black px-5 py-2 text-sm font-medium text-black hover:bg-gray-50 transition-colors whitespace-nowrap"
-                style={{ lineHeight: '21px' }}
+                className="rounded-full border border-black px-5 py-2 text-[16px] font-medium text-black hover:bg-gray-50 transition-colors whitespace-nowrap"
+                style={{ lineHeight: '22px' }}
               >
                 Book a demo
               </Link>
               <Link
                 href="https://app.prohost.ai/signup"
-                className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors whitespace-nowrap"
-                style={{ lineHeight: '21px' }}
+                className="rounded-full bg-black px-5 py-2 text-[16px] font-medium text-white hover:bg-gray-800 transition-colors whitespace-nowrap"
+                style={{ lineHeight: '22px' }}
               >
                 Sign up now
               </Link>
@@ -328,124 +434,6 @@ export default function Header() {
         )}
       </nav>
     </header>
-
-      {/* Full-screen Features Dropdown */}
-      {featuresOpen && (
-        <div
-          data-dropdown
-          className={`fixed left-0 right-0 top-20 z-10 ${
-            isAnimating ? 'animate-slide-down' : ''
-          }`}>
-          <div className="bg-white border-t border-gray-100">
-            <div className="py-8">
-              <div className="px-4 sm:px-8 lg:px-[30px]">
-                <div className="lg:ml-[calc(32px+40px+12px)]">
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Features</h3>
-                  <div className="grid grid-cols-2 gap-8 max-w-2xl">
-                {/* Column 1 */}
-                <div className="space-y-4">
-                  {featuresMenu.slice(0, 3).map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="block"
-                      onClick={() => setFeaturesOpen(false)}
-                    >
-                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
-                        {item.name}
-                      </h4>
-                      <p className="text-xs text-gray-500">
-                        {item.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-                {/* Column 2 */}
-                <div className="space-y-4">
-                  {featuresMenu.slice(3).map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="block"
-                      onClick={() => setFeaturesOpen(false)}
-                    >
-                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
-                        {item.name}
-                      </h4>
-                      <p className="text-xs text-gray-500">
-                        {item.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Full-screen Resources Dropdown */}
-      {resourcesOpen && (
-        <div
-          data-dropdown
-          className={`fixed left-0 right-0 top-20 z-10 ${
-            isAnimating ? 'animate-slide-down' : ''
-          }`}>
-          <div className="bg-white border-t border-gray-100">
-            <div className="py-8">
-              <div className="px-4 sm:px-8 lg:px-[30px]">
-                <div className="lg:ml-[calc(32px+40px+12px)]">
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">Resources</h3>
-                  <div className="grid grid-cols-2 gap-8 max-w-2xl">
-                {/* Column 1 */}
-                <div className="space-y-4">
-                  {resourcesMenu.slice(0, 3).map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      target={item.external ? "_blank" : undefined}
-                      rel={item.external ? "noopener noreferrer" : undefined}
-                      className="block"
-                      onClick={() => setResourcesOpen(false)}
-                    >
-                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
-                        {item.name}
-                      </h4>
-                      <p className="text-xs text-gray-500">
-                        {item.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-                {/* Column 2 */}
-                <div className="space-y-4">
-                  {resourcesMenu.slice(3).map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      target={item.external ? "_blank" : undefined}
-                      rel={item.external ? "noopener noreferrer" : undefined}
-                      className="block"
-                      onClick={() => setResourcesOpen(false)}
-                    >
-                      <h4 className="text-sm font-semibold text-gray-900 hover:text-primary-600 transition-colors mb-1">
-                        {item.name}
-                      </h4>
-                      <p className="text-xs text-gray-500">
-                        {item.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
