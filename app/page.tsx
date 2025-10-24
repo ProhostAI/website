@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRive, Layout, Fit, Alignment } from '@rive-app/react-canvas';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CleaningsDemo from '@/components/CleaningsDemo';
@@ -11,6 +12,15 @@ export default function HomePage() {
   const [activeCalendarTab, setActiveCalendarTab] = useState('all-in-one');
   const [heroVisualScale, setHeroVisualScale] = useState(0);
   const heroVisualRef = useRef<HTMLDivElement>(null);
+
+  const { RiveComponent } = useRive({
+    src: '/images/rive-animation-desktop.riv',
+    autoplay: true,
+    layout: new Layout({
+      fit: Fit.Contain,
+      alignment: Alignment.Center,
+    }),
+  });
 
   useEffect(() => {
     let rafId: number;
@@ -109,7 +119,7 @@ export default function HomePage() {
         >
           <div className="sticky top-0 w-full h-screen flex items-center justify-center">
             <div
-              className="flex items-center justify-center"
+              className="flex items-center justify-center overflow-hidden"
               style={{
                 width: `${90 + heroVisualScale * 10}vw`,
                 height: heroVisualScale >= 1
@@ -120,7 +130,7 @@ export default function HomePage() {
                 willChange: 'width, height, border-radius',
               }}
             >
-              <p className="text-gray-400 text-lg">Hero Visual Placeholder</p>
+              <RiveComponent style={{ width: '60%', height: '60%' }} />
             </div>
           </div>
         </section>
