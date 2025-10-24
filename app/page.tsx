@@ -13,6 +13,7 @@ export default function HomePage() {
   const [heroVisualScale, setHeroVisualScale] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const heroVisualRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   const { RiveComponent } = useRive({
     src: '/images/rive-animation-desktop.riv',
@@ -61,6 +62,44 @@ export default function HomePage() {
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, [isMobile]);
+
+  // Marquee animation
+  useEffect(() => {
+    const marqueeContainer = marqueeRef.current;
+    if (!marqueeContainer) return;
+
+    const marqueeContent = marqueeContainer.querySelector('.marquee-content') as HTMLElement;
+    if (!marqueeContent) return;
+
+    // Clone the content for seamless loop
+    const clone = marqueeContent.cloneNode(true) as HTMLElement;
+    marqueeContainer.appendChild(clone);
+
+    let scrollPos = 0;
+    const contentWidth = marqueeContent.offsetWidth;
+    const speed = 1; // pixels per frame
+
+    const animate = () => {
+      scrollPos += speed;
+
+      // Reset position when first content is fully scrolled
+      if (scrollPos >= contentWidth) {
+        scrollPos = 0;
+      }
+
+      marqueeContainer.style.transform = `translateX(-${scrollPos}px)`;
+      requestAnimationFrame(animate);
+    };
+
+    const animationId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      if (clone.parentNode) {
+        clone.parentNode.removeChild(clone);
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -171,51 +210,32 @@ export default function HomePage() {
         <section className="bg-white overflow-hidden relative z-0" style={{ paddingTop: '140px', paddingBottom: '140px' }}>
           <div className="w-full">
             {/* Infinite Logo Marquee */}
-            <div className="relative">
-              <div className="flex items-center animate-marquee" style={{ gap: '160px' }}>
-                {/* First set */}
-                <p className="whitespace-nowrap flex-shrink-0" style={{
-                  fontSize: '16px',
-                  lineHeight: '24px',
-                  fontWeight: 500,
-                  color: '#000'
-                }}>Backed by:</p>
-                <img src="/images/yc.png" alt="Y Combinator" className="h-10 object-contain opacity-60 flex-shrink-0" />
-                <img src="/images/pear.png" alt="Pear VC" className="h-10 object-contain opacity-60 flex-shrink-0" />
-                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Amino Capital</span>
-                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Data Tech Fund</span>
-                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Pioneer</span>
-                <p className="whitespace-nowrap flex-shrink-0" style={{
-                  fontSize: '16px',
-                  lineHeight: '24px',
-                  fontWeight: 500,
-                  color: '#000'
-                }}>Team from:</p>
-                <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 flex-shrink-0" />
-                <img src="/images/dropbox.png" alt="Dropbox" className="h-8 object-contain opacity-60 flex-shrink-0" />
-                <img src="/images/harvard.png" alt="Harvard" className="h-10 object-contain opacity-60 flex-shrink-0" />
-
-                {/* Duplicate set for seamless loop */}
-                <p className="whitespace-nowrap flex-shrink-0" style={{
-                  fontSize: '16px',
-                  lineHeight: '24px',
-                  fontWeight: 500,
-                  color: '#000'
-                }}>Backed by:</p>
-                <img src="/images/yc.png" alt="Y Combinator" className="h-10 object-contain opacity-60 flex-shrink-0" />
-                <img src="/images/pear.png" alt="Pear VC" className="h-10 object-contain opacity-60 flex-shrink-0" />
-                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Amino Capital</span>
-                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Data Tech Fund</span>
-                <span className="text-xl font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">Pioneer</span>
-                <p className="whitespace-nowrap flex-shrink-0" style={{
-                  fontSize: '16px',
-                  lineHeight: '24px',
-                  fontWeight: 500,
-                  color: '#000'
-                }}>Team from:</p>
-                <img src="/images/airbnb.png" alt="Airbnb" className="h-8 object-contain opacity-60 flex-shrink-0" />
-                <img src="/images/dropbox.png" alt="Dropbox" className="h-8 object-contain opacity-60 flex-shrink-0" />
-                <img src="/images/harvard.png" alt="Harvard" className="h-10 object-contain opacity-60 flex-shrink-0" />
+            <div className="relative overflow-hidden">
+              <div ref={marqueeRef} className="flex" style={{ willChange: 'transform' }}>
+                <div className="marquee-content flex items-center flex-shrink-0" style={{ gap: '160px', paddingRight: '160px' }}>
+                  <p style={{
+                    fontSize: '16px',
+                    lineHeight: '24px',
+                    fontWeight: 500,
+                    color: '#000',
+                    whiteSpace: 'nowrap'
+                  }}>Backed by:</p>
+                  <img src="/images/y_combinator_logo.svg.png" alt="Y Combinator" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                  <img src="/images/image.png" alt="Pear VC" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                  <img src="/images/image-40.png" alt="Multimodal" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                  <img src="/images/image-41.png" alt="Data Tech Fund" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                  <img src="/images/image-42.png" alt="Pioneer" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                  <p style={{
+                    fontSize: '16px',
+                    lineHeight: '24px',
+                    fontWeight: 500,
+                    color: '#000',
+                    whiteSpace: 'nowrap'
+                  }}>Team from:</p>
+                  <img src="/images/image-44.png" alt="Airbnb" className="h-8 object-contain opacity-60 flex-shrink-0" />
+                  <img src="/images/image-45.png" alt="Dropbox" className="h-8 object-contain opacity-60 flex-shrink-0" />
+                  <img src="/images/image-46.png" alt="Harvard" className="h-10 object-contain opacity-60 flex-shrink-0" />
+                </div>
               </div>
             </div>
           </div>
