@@ -202,17 +202,56 @@ export default function HomePage() {
         </section>
 
         {/* Integrations Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-width-container section-padding">
-            <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-              Connect your listings in minutes
-            </h2>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-              <img src="/images/airbnb.png" alt="Airbnb" className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity" />
-              <img src="/images/hostaway-integration.png" alt="Hostaway" className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity" />
-              <span className="text-2xl font-semibold text-gray-400">OwnerRez</span>
-              <span className="text-2xl font-semibold text-gray-400">Hospitable</span>
-              <img src="/images/guesty-integration.png" alt="Guesty" className="h-10 object-contain opacity-70 hover:opacity-100 transition-opacity" />
+        <section className="section-padding bg-white" style={{ paddingTop: '140px', paddingBottom: '140px' }}>
+          <div className="mx-auto px-4" style={{ maxWidth: '1320px' }}>
+            <div style={{
+              backgroundColor: '#f9fafb',
+              borderRadius: '48px',
+              paddingLeft: 'clamp(24px, 5vw, 150px)',
+              paddingRight: 'clamp(24px, 5vw, 150px)',
+              paddingTop: 'clamp(48px, 8vw, 120px)',
+              paddingBottom: 'clamp(48px, 8vw, 120px)'
+            }}>
+              <div className="text-center mb-20">
+                <p className="mb-3" style={{
+                  fontSize: '16px',
+                  lineHeight: '28px',
+                  fontWeight: 600,
+                  color: 'color(display-p3 0.953 0.529 0.267)'
+                }}>
+                  Integrations
+                </p>
+                <h2 className="font-bold text-black mb-10" style={{
+                  fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                  lineHeight: 'clamp(2.5rem, 6vw, 4.5rem)',
+                  fontWeight: 700
+                }}>
+                  Connect your listings<br />in minutes
+                </h2>
+                <p className="mx-auto" style={{
+                  fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                  lineHeight: 'clamp(1.5rem, 2.5vw, 1.875rem)',
+                  fontWeight: 400,
+                  color: '#667085',
+                  maxWidth: '800px'
+                }}>
+                  Connect your Airbnb or PMS accounts. ProhostAI is live with Hostaway, OwnerRez, Hospitable and Guesty.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <img
+                  src="/images/integrations-logos.avif"
+                  alt="Integrations"
+                  className="hidden md:block object-contain"
+                  style={{ width: '80%' }}
+                />
+                <img
+                  src="/images/integrations-logos-mobile.avif"
+                  alt="Integrations"
+                  className="md:hidden object-contain"
+                  style={{ width: '80%' }}
+                />
+              </div>
             </div>
           </div>
         </section>
