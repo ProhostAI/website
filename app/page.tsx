@@ -20,12 +20,10 @@ export default function HomePage() {
           <div className="max-w-[1240px] mx-auto section-padding py-24 sm:py-32">
             <div className="text-center">
               {/* Announcement Badge */}
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-6" style={{ backgroundColor: '#F2F4F7' }}>
+                <span className="text-sm md:text-[16px] leading-5 md:leading-[22px]">
+                  <span className="font-semibold">New feature:</span> <span className="font-normal">AI Autopilot</span> ↗
                 </span>
-                New feature: AI Autopilot
               </div>
 
               <h1 className="text-[clamp(2.5rem,8vw,5.75rem)] font-bold tracking-tight text-black leading-[clamp(2.5rem,8vw,5.5rem)]">
