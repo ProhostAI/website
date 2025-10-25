@@ -25,39 +25,16 @@ interface VendorProfile {
   coverImageUrl: string | null;
 }
 
-const serviceOptions = [
-  'Web Development',
-  'Mobile Development',
-  'Cloud Services',
-  'Digital Marketing',
-  'UI/UX Design',
-  'DevOps',
-  'Cybersecurity',
-  'Data Analytics',
-  'AI/ML Services',
-  'Consulting',
-  'SEO',
-  'Content Marketing',
-  'API Development',
-  'E-commerce Solutions',
-];
+interface FilterOption {
+  name: string;
+  count: number;
+}
 
-const areaOptions = [
-  'Miami',
-  'Miami Beach',
-  'Fort Lauderdale',
-  'West Palm Beach',
-  'Orlando',
-  'Tampa',
-  'Jacksonville',
-  'San Francisco',
-  'New York',
-  'Los Angeles',
-  'Seattle',
-  'Austin',
-  'Remote',
-  'Worldwide',
-];
+interface FiltersData {
+  services: FilterOption[];
+  serviceAreas: FilterOption[];
+  totalVendors: number;
+}
 
 export default function VendorDirectoryPage() {
   const [vendors, setVendors] = useState<VendorProfile[]>([]);
@@ -66,10 +43,19 @@ export default function VendorDirectoryPage() {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [filtersLoading, setFiltersLoading] = useState(true);
+  const [filtersData, setFiltersData] = useState<FiltersData>({
+    services: [],
+    serviceAreas: [],
+    totalVendors: 0
+  });
+  const [showAllServices, setShowAllServices] = useState(false);
+  const [showAllAreas, setShowAllAreas] = useState(false);
 
   // Fetch vendors from Supabase
   useEffect(() => {
     fetchVendors();
+    fetchFilters();
   }, []);
 
   // Apply filters
@@ -132,6 +118,23 @@ export default function VendorDirectoryPage() {
     }
   };
 
+  const fetchFilters = async () => {
+    setFiltersLoading(true);
+    try {
+      const response = await fetch('/api/vendors/filters');
+      const data = await response.json();
+      setFiltersData(data);
+    } catch (error) {
+      console.error('Error fetching filters:', error);
+    } finally {
+      setFiltersLoading(false);
+    }
+  };
+
+  // Get display limits for filters
+  const displayedServices = showAllServices ? filtersData.services : filtersData.services.slice(0, 8);
+  const displayedAreas = showAllAreas ? filtersData.serviceAreas : filtersData.serviceAreas.slice(0, 8);
+
   return (
     <>
       <Header />
@@ -177,67 +180,166 @@ export default function VendorDirectoryPage() {
             {/* Filters Sidebar */}
             <aside className="lg:w-64 flex-shrink-0">
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Filters</h2>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+                  {(selectedServices.length > 0 || selectedAreas.length > 0) && (
+                    <button
+                      onClick={() => {
+                        setSelectedServices([]);
+                        setSelectedAreas([]);
+                      }}
+                      className="text-sm text-primary-600 hover:text-primary-700"
+                    >
+                      Clear all
+                    </button>
+                  )}
+                </div>
+
+                {/* Active Filters Summary */}
+                {(selectedServices.length > 0 || selectedAreas.length > 0) && (
+                  <div className="mb-4 pb-4 border-b">
+                    <p className="text-xs text-gray-500 mb-2">Active filters:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {selectedServices.map(service => (
+                        <span key={service} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-primary-100 text-primary-700">
+                          {service}
+                          <button
+                            onClick={() => setSelectedServices(selectedServices.filter(s => s !== service))}
+                            className="ml-1 hover:text-primary-900"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                      {selectedAreas.map(area => (
+                        <span key={area} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-700">
+                          {area}
+                          <button
+                            onClick={() => setSelectedAreas(selectedAreas.filter(a => a !== area))}
+                            className="ml-1 hover:text-gray-900"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Service Filter */}
                 <div className="mb-6">
                   <h3 className="text-sm font-medium text-gray-700 mb-3">Services</h3>
-                  <div className="space-y-2 max-h-64 overflow-y-auto">
-                    {serviceOptions.map((service) => (
-                      <label key={service} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="rounded text-primary-600 focus:ring-primary-500"
-                          checked={selectedServices.includes(service)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setSelectedServices([...selectedServices, service]);
-                            } else {
-                              setSelectedServices(selectedServices.filter(s => s !== service));
-                            }
-                          }}
-                        />
-                        <span className="ml-2 text-sm text-gray-600">{service}</span>
-                      </label>
-                    ))}
-                  </div>
+                  {filtersLoading ? (
+                    <div className="space-y-2">
+                      {[1, 2, 3].map(i => (
+                        <div key={i} className="h-6 bg-gray-100 rounded animate-pulse"></div>
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      <div className="space-y-2 max-h-64 overflow-y-auto">
+                        {displayedServices.map((service) => (
+                          <label key={service.name} className="flex items-center justify-between group cursor-pointer">
+                            <div className="flex items-center flex-1">
+                              <input
+                                type="checkbox"
+                                className="rounded text-primary-600 focus:ring-primary-500"
+                                checked={selectedServices.includes(service.name)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setSelectedServices([...selectedServices, service.name]);
+                                  } else {
+                                    setSelectedServices(selectedServices.filter(s => s !== service.name));
+                                  }
+                                }}
+                              />
+                              <span className="ml-2 text-sm text-gray-600 group-hover:text-gray-900">
+                                {service.name}
+                              </span>
+                            </div>
+                            <span className="text-xs text-gray-400">({service.count})</span>
+                          </label>
+                        ))}
+                      </div>
+                      {filtersData.services.length > 8 && (
+                        <button
+                          onClick={() => setShowAllServices(!showAllServices)}
+                          className="mt-2 text-sm text-primary-600 hover:text-primary-700"
+                        >
+                          {showAllServices ? 'Show less' : `Show all (${filtersData.services.length})`}
+                        </button>
+                      )}
+                    </>
+                  )}
                 </div>
 
                 {/* Area Filter */}
                 <div>
                   <h3 className="text-sm font-medium text-gray-700 mb-3">Service Areas</h3>
-                  <div className="space-y-2 max-h-64 overflow-y-auto">
-                    {areaOptions.map((area) => (
-                      <label key={area} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          className="rounded text-primary-600 focus:ring-primary-500"
-                          checked={selectedAreas.includes(area)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setSelectedAreas([...selectedAreas, area]);
-                            } else {
-                              setSelectedAreas(selectedAreas.filter(a => a !== area));
-                            }
-                          }}
-                        />
-                        <span className="ml-2 text-sm text-gray-600">{area}</span>
-                      </label>
-                    ))}
+                  {filtersLoading ? (
+                    <div className="space-y-2">
+                      {[1, 2, 3].map(i => (
+                        <div key={i} className="h-6 bg-gray-100 rounded animate-pulse"></div>
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      <div className="space-y-2 max-h-64 overflow-y-auto">
+                        {displayedAreas.map((area) => (
+                          <label key={area.name} className="flex items-center justify-between group cursor-pointer">
+                            <div className="flex items-center flex-1">
+                              <input
+                                type="checkbox"
+                                className="rounded text-primary-600 focus:ring-primary-500"
+                                checked={selectedAreas.includes(area.name)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setSelectedAreas([...selectedAreas, area.name]);
+                                  } else {
+                                    setSelectedAreas(selectedAreas.filter(a => a !== area.name));
+                                  }
+                                }}
+                              />
+                              <span className="ml-2 text-sm text-gray-600 group-hover:text-gray-900">
+                                {area.name}
+                              </span>
+                            </div>
+                            <span className="text-xs text-gray-400">({area.count})</span>
+                          </label>
+                        ))}
+                      </div>
+                      {filtersData.serviceAreas.length > 8 && (
+                        <button
+                          onClick={() => setShowAllAreas(!showAllAreas)}
+                          className="mt-2 text-sm text-primary-600 hover:text-primary-700"
+                        >
+                          {showAllAreas ? 'Show less' : `Show all (${filtersData.serviceAreas.length})`}
+                        </button>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Stats Card */}
+              {!filtersLoading && (
+                <div className="bg-white rounded-lg shadow-sm p-4 mt-4">
+                  <div className="text-center">
+                    <p className="text-2xl font-bold text-primary-600">{filtersData.totalVendors}</p>
+                    <p className="text-sm text-gray-600">Total Vendors</p>
+                  </div>
+                  <div className="mt-3 pt-3 border-t grid grid-cols-2 gap-2 text-center">
+                    <div>
+                      <p className="text-lg font-semibold text-gray-900">{filtersData.services.length}</p>
+                      <p className="text-xs text-gray-600">Services</p>
+                    </div>
+                    <div>
+                      <p className="text-lg font-semibold text-gray-900">{filtersData.serviceAreas.length}</p>
+                      <p className="text-xs text-gray-600">Areas</p>
+                    </div>
                   </div>
                 </div>
-
-                {/* Clear Filters */}
-                <button
-                  onClick={() => {
-                    setSelectedServices([]);
-                    setSelectedAreas([]);
-                  }}
-                  className="mt-6 w-full py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  Clear all filters
-                </button>
-              </div>
+              )}
             </aside>
 
             {/* Vendor Grid */}
@@ -245,6 +347,9 @@ export default function VendorDirectoryPage() {
               <div className="mb-4 flex items-center justify-between">
                 <p className="text-sm text-gray-600">
                   Showing {vendors.length} vendor{vendors.length !== 1 ? 's' : ''}
+                  {(selectedServices.length > 0 || selectedAreas.length > 0 || searchTerm) &&
+                    ` (filtered from ${allVendors.length})`
+                  }
                 </p>
               </div>
 
@@ -255,6 +360,18 @@ export default function VendorDirectoryPage() {
               ) : vendors.length === 0 ? (
                 <div className="bg-white rounded-lg shadow-sm p-12 text-center">
                   <p className="text-gray-500">No vendors found matching your criteria.</p>
+                  {(selectedServices.length > 0 || selectedAreas.length > 0 || searchTerm) && (
+                    <button
+                      onClick={() => {
+                        setSelectedServices([]);
+                        setSelectedAreas([]);
+                        setSearchTerm('');
+                      }}
+                      className="mt-4 text-primary-600 hover:text-primary-700"
+                    >
+                      Clear all filters
+                    </button>
+                  )}
                 </div>
               ) : (
                 <div className="grid gap-6 md:grid-cols-2">
