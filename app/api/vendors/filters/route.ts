@@ -70,8 +70,8 @@ export async function GET() {
       .map(([name, count]) => ({ name, count }))
       .sort((a, b) => {
         // Sort states first, then cities by count
-        const aIsState = name.includes('(State)');
-        const bIsState = name.includes('(State)');
+        const aIsState = a.name.includes('(State)');
+        const bIsState = b.name.includes('(State)');
         if (aIsState && !bIsState) return -1;
         if (!aIsState && bIsState) return 1;
         return b.count - a.count;
